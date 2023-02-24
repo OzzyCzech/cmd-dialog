@@ -18,12 +18,32 @@ export declare class CmdAction extends LitElement {
      * Scroll to show element
      */
     ensureInView(): void;
-    click(): void;
     constructor();
+    /**
+     * Click event
+     */
+    click(): void;
+    /**
+     * Updated
+     * @param changedProperties
+     */
     updated(changedProperties: Map<string, unknown>): void;
     render(): TemplateResult<1>;
+    /**
+     * Get hotkeys
+     * @private
+     */
     private get hotkeys();
-    private get icon();
+    /**
+     * Get description
+     * @private
+     */
+    private get description();
+    /**
+     * Get icon
+     * @private
+     */
+    private get img();
 }
 declare global {
     interface HTMLElementTagNameMap {
