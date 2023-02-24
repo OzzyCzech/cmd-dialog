@@ -1,6 +1,6 @@
 {
 	"name": "cmd-dialog",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
 	"main": "dist/cmd-dialog.js",
 	"exports": {
@@ -24,7 +24,10 @@
 		"typescript": "^4.9.5",
 		"vite": "^4.1.4"
 	},
-	"files": ["dist", "types"],
+	"files": [
+		"dist",
+		"types"
+	],
 	"keywords": [
 		"keyboard",
 		"shortcuts",
