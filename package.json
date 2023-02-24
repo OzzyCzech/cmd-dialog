@@ -1,7 +1,7 @@
 {
 	"name": "cmd-dialog",
 	"version": "1.0.0",
-	"description": "Command dialog palette",
+	"description": "Command dialog and keyboard shortcuts palette for web apps",
 	"main": "index.js",
 	"author": "Roman Ožana <roman@ozana.cz>",
 	"license": "MIT",
