@@ -1,6 +1,6 @@
 # Command `<dialog>`
 
-Command dialog and keyboard shortcuts for any web application.
+Command dialog and keyboard shortcuts palette for any web application.
 
 ![](./assets/cmd.dialog.light.png)
 
