@@ -1,4 +1,4 @@
-import {LitElement, html, css, unsafeCSS} from 'lit';
+import {html, LitElement, nothing, TemplateResult, unsafeCSS} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
@@ -34,6 +34,14 @@ export class CmdAction extends LitElement {
     requestAnimationFrame(() => this.scrollIntoView({block: 'nearest'}));
   }
   
+  constructor() {
+    super();
+    this.addEventListener('click', this.click);
+  }
+  
+  /**
+   * Click event
+   */
   override click() {
     this.dispatchEvent(
       new CustomEvent('actionSelected', {
@@ -44,11 +52,10 @@ export class CmdAction extends LitElement {
     );
   }
   
-  constructor() {
-    super();
-    this.addEventListener('click', this.click);
-  }
-  
+  /**
+   * Updated
+   * @param changedProperties
+   */
   override updated(changedProperties: Map<string, unknown>) {
     if (changedProperties.has('selected')) {
       if (this.selected) {
@@ -58,7 +65,6 @@ export class CmdAction extends LitElement {
   }
   
   override render() {
-    
     const classes = {
       selected: this.selected,
       dark: this.theme === 'dark',
@@ -66,16 +72,20 @@ export class CmdAction extends LitElement {
     
     return html`
 			<li class=${classMap(classes)}>
-				${this.icon}
+				${this.img}
 				<strong>
 					${this.action.title}
-					<small class="block">${this.action.description}</small>
+					${this.description}
 				</strong>
 				${this.hotkeys}
 			</li>
     `;
   }
   
+  /**
+   * Get hotkeys
+   * @private
+   */
   private get hotkeys() {
     if (this.action?.hotkey) {
       const hotkeys = this.action.hotkey
@@ -85,15 +95,26 @@ export class CmdAction extends LitElement {
         .replace('ctrl', '⌃')
         .toUpperCase()
         .split('+');
-      
-      if (hotkeys.length > 0) {
-        return html`<span>${repeat(hotkeys, (hotkey) => html`<kbd>${hotkey}</kbd>`,)}</span>`;
-      }
+      return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, (hotkey) => html`<kbd>${hotkey}</kbd>`,)}</span>` : '';
+    } else {
+      return nothing;
     }
   }
   
-  private get icon() {
-    return this.action.img ? html`<span>${unsafeHTML(this.action.img)}</span>` : '';
+  /**
+   * Get description
+   * @private
+   */
+  private get description() {
+    return this.action.description ? html`<small>${this.action.description}</small>` : nothing;
+  }
+  
+  /**
+   * Get icon
+   * @private
+   */
+  private get img(): TemplateResult | typeof nothing {
+    return this.action.img ? html`<span>${unsafeHTML(this.action.img)}</span>` : nothing;
   }
 }
 

@@ -62,7 +62,7 @@
 	}
 
 	li strong small {
-		@apply text-sm font-normal text-neutral-500;
+		@apply block text-sm font-normal text-neutral-500;
 	}
 
 	li svg,

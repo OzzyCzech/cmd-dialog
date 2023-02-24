@@ -1,4 +1,4 @@
-import {html, css, LitElement, unsafeCSS, PropertyValues, TemplateResult} from "lit";
+import {html, LitElement, unsafeCSS, PropertyValues, TemplateResult} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
 import {live} from 'lit/directives/live.js';
 import {repeat} from 'lit/directives/repeat.js';
@@ -34,7 +34,7 @@ export class CmdDialog extends LitElement {
   /**
    * Open dialog hotkey
    */
-  @property({type: String}) hotkeys = 'cmd+k,ctrl+k';
+  @property({type: String}) hotkey = 'cmd+k,ctrl+k';
   
   /**
    * Array of actions
@@ -68,7 +68,7 @@ export class CmdDialog extends LitElement {
    * Fuse.js instance
    * @private
    */
-  private fuse: Fuse<Action>;
+  private fuse: Fuse<Action> | undefined;
   
   /**
    * Open the dialog.
@@ -81,7 +81,7 @@ export class CmdDialog extends LitElement {
    * Close the dialog.
    */
   public close() {
-    this.input.value = '';
+    this.input.value = ''
     this.dialog.close();
   }
   
@@ -89,14 +89,14 @@ export class CmdDialog extends LitElement {
     super.connectedCallback();
     
     // open dialog
-    hotkeys(this.hotkeys, (event, handler) => {
+    hotkeys(this.hotkey, (event) => {
       this.open();
       event.preventDefault();
     });
     
     
     // select next
-    hotkeys('down,tab', (event, handler) => {
+    hotkeys('down,tab', (event) => {
       if (!this.dialog.open) return;
       event.preventDefault();
       
@@ -108,7 +108,7 @@ export class CmdDialog extends LitElement {
     });
     
     // select previous
-    hotkeys('up,shift+tab', (event, handler) => {
+    hotkeys('up,shift+tab', (event) => {
       if (!this.dialog.open) return;
       event.preventDefault();
       
@@ -120,7 +120,7 @@ export class CmdDialog extends LitElement {
     });
     
     // trigger action
-    hotkeys('enter', (event, handler) => {
+    hotkeys('enter', (event) => {
       if (!this.dialog.open) return;
       event.preventDefault();
       this._triggerAction(this._results[this._selectedIndex]);
@@ -130,7 +130,7 @@ export class CmdDialog extends LitElement {
   override disconnectedCallback() {
     super.disconnectedCallback();
     // unregister hotkeys
-    hotkeys.unbind(this.hotkeys);
+    hotkeys.unbind(this.hotkey);
     hotkeys.unbind('down,tab');
     hotkeys.unbind('up,shift+tab');
     hotkeys.unbind('enter');
@@ -141,7 +141,7 @@ export class CmdDialog extends LitElement {
       
       // register action hotkeys
       for (const action of this.actions.filter(item => !!item.hotkey)) {
-        hotkeys(action.hotkey, (event) => {
+        hotkeys(action.hotkey || '', (event) => {
           event.preventDefault();
           this._triggerAction(action);
         });
@@ -165,12 +165,16 @@ export class CmdDialog extends LitElement {
   
   override render() {
     // search for matches
-    const results = this.fuse.search(this._search);
-    this._results = results.map(item => item.item);
+    const results = this.fuse?.search(this._search);
+    if (results) {
+      this._results = results.map(item => item.item);
+    }
     
     if (this._search.length > 0) {
-      const results = this.fuse.search(this._search);
-      this._results = results.map(item => item.item);
+      const results = this.fuse?.search(this._search);
+      if (results) {
+        this._results = results.map(item => item.item);
+      }
     } else {
       this._results = this.actions;
     }
@@ -196,8 +200,8 @@ export class CmdDialog extends LitElement {
 									.action=${action}
 									.selected=${live(action === this._selected)}
 									.theme=${this.theme}
-									@mouseover=${(event: MouseEvent) =>
-										this._actionFocused(action, event)}
+									@mouseover=${() =>
+										this._actionFocused(action)}
 									@actionSelected=${(event: CustomEvent<Action>) =>
 										this._triggerAction(event.detail)}
 								></cmd-action>`
@@ -205,34 +209,34 @@ export class CmdDialog extends LitElement {
 				</ul>`;
     
     return html`
-	    <dialog
-		    class="${this.theme}"
-		    @close="${this.close}"
-		    @click="${(event: MouseEvent) => {
-			    if (event.target === this.dialog) this.close(); // close on backdrop click
-		    }}">
+			<dialog
+				class="${this.theme}"
+				@close="${this.close}"
+				@click="${(event: MouseEvent) => {
+					if (event.target === this.dialog) this.close(); // close on backdrop click
+				}}">
 
-		    <!-- Header -->
-		    <form>
-			    <input
-				    type="text"
-				    spellcheck="false"
-				    autocomplete="off"
-				    @input="${this._onInput}"
-				    placeholder="${this.placeholder}"
-				    autofocus
-			    >
-		    </form>
+				<!-- Header -->
+				<form>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						@input="${this._onInput}"
+						placeholder="${this.placeholder}"
+						autofocus
+					>
+				</form>
 
-		    <!-- Action list -->
-		    <main>${actionList}</main>
+				<!-- Action list -->
+				<main>${actionList}</main>
 
-		    <!-- Footer -->
-		    <slot name="footer">
-			    <p><kbd>⏎</kbd> to select <kbd>↑</kbd> <kbd>↓</kbd> to navigate <kbd>esc</kbd> to close</p>
-			    ${unsafeHTML(this.note || `<span>${this._results.length} options</span>`)}
-		    </slot>
-	    </dialog>
+				<!-- Footer -->
+				<slot name="footer">
+					<p><kbd>⏎</kbd> to select <kbd>↑</kbd> <kbd>↓</kbd> to navigate <kbd>esc</kbd> to close</p>
+					${unsafeHTML(this.note || `<span>${this._results.length} options</span>`)}
+				</slot>
+			</dialog>
     `;
   }
   
@@ -261,10 +265,9 @@ export class CmdDialog extends LitElement {
   /**
    * Handle focus on action.
    * @param action
-   * @param event
    * @private
    */
-  private _actionFocused(action: Action, event: MouseEvent) {
+  private _actionFocused(action: Action) {
     this._selected = action;
   }
   
@@ -300,19 +303,26 @@ export class CmdDialog extends LitElement {
     }
   }
   
+  /**
+   * Return the index of the selected action.
+   * @private
+   */
   private get _selectedIndex(): number {
-    if (!this._selected) {
-      return -1;
-    }
-    return this._results.indexOf(this._selected);
+    return !this._selected ? -1 : this._results.indexOf(this._selected);
   }
   
-  get dialog() {
-    return this.shadowRoot.querySelector('dialog') ?? null;
+  /**
+   * Return the dialog element.
+   */
+  get dialog(): HTMLDialogElement {
+    return this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
   }
   
-  get input() {
-    return this.shadowRoot.querySelector('input') ?? null;
+  /**
+   * Return the input element.
+   */
+  get input(): HTMLInputElement {
+    return this.shadowRoot?.querySelector('input') as HTMLInputElement;
   }
 }
 

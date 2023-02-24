@@ -19,12 +19,19 @@ Command dialog and keyboard shortcuts palette for web apps.
 npm i cmd-dialog
 ```
 
+### From CDN
+
+```html
+
+<script type="module">import 'https://unpkg.com/cmd-dialog?module';
+```
+
 ## Usage
 
 ### Attributes
 
 - `theme` - Theme of the dialog. Possible values: `light` or `dark`. Default value is taken from browser preference.
-- `hotkeys` - List of hotkeys. Default value: `ctrl+k,cmd+k`.
+- `hotkey` - List of hotkeys. Default value: `ctrl+k,cmd+k`.
 - `placeholder` - Placeholder text for the search input. Default value: `Type a command or search...`.
 - `note` - The note in the footer of the dialog box. Default value show number of options.
 
