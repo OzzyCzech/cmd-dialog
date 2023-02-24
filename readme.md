@@ -1,6 +1,6 @@
 # Command `<dialog>`
 
-Command palette and keyboard shortcuts dialog for any web application.
+Command dialog and keyboard shortcuts for any web application.
 
 ![](./assets/cmd.dialog.light.png)
 
@@ -20,7 +20,6 @@ npm i cmd-dialog
 ```
 
 ## Usage
-
 
 ### Attributes
 
