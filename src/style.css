@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+	dialog::backdrop {
+		@apply backdrop-brightness-75;
+	}
+
+	dialog {
+		@apply p-0;
+		@apply transition-all antialiased leading-normal tracking-normal;
+		@apply shadow-xl shadow-neutral-900/10;
+		@apply w-full mx-auto max-w-2xl transition-all overflow-hidden rounded-xl;
+		@apply border border-neutral-200;
+		@apply divide-y divide-neutral-200/80;
+		@apply bg-neutral-50;
+		@apply absolute mx-auto mt-[20vh];
+
+		&.dark {
+			@apply bg-neutral-900;
+			@apply text-neutral-300;
+			@apply border-neutral-800;
+			@apply divide-neutral-800;
+			@apply shadow-neutral-500/10;
+		}
+
+		input[type="text"] {
+			@apply text-2xl font-normal bg-transparent py-3 px-4 border-0 w-full placeholder:text-neutral-500 focus:ring-0 dark:text-white;
+		}
+	}
+
+	[name="footer"] {
+		@apply flex justify-between text-sm p-3;
+		@apply text-neutral-700 dark:text-neutral-400;
+	}
+
+	ul {
+		@apply overflow-y-auto max-h-80;
+		@apply first:mt-2 last:mb-2;
+	}
+
+	li {
+		@apply flex cursor-default select-none items-center px-4 py-3.5 gap-4;
+		@apply cursor-pointer mx-2;
+
+
+		&.selected {
+			@apply outline-none;
+			@apply bg-neutral-200;
+			@apply rounded-md;
+		}
+
+		&.selected.dark {
+			@apply bg-neutral-800;
+		}
+	}
+
+	li strong {
+		@apply grow font-medium;
+	}
+
+	li strong small {
+		@apply text-sm font-normal text-neutral-500;
+	}
+
+	li svg,
+	li img {
+		@apply w-5 h-5;
+	}
+
+	kbd {
+		@apply font-mono font-semibold whitespace-nowrap text-center;
+		@apply rounded-sm bg-neutral-700/20 dark:bg-neutral-800;
+		@apply inline-block px-1 mx-0.5 leading-normal;
+		@apply min-w-[1.3rem];
+	}
+}

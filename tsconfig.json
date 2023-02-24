@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"strictPropertyInitialization": false,
+		"useDefineForClassFields": false,
+		"baseUrl": "src"
+	},
+	"include": ["src"]
+}
