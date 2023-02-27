@@ -1,21 +1,27 @@
 {
 	"name": "cmd-dialog",
-	"version": "1.0.1",
+	"author": "Roman Ožana <roman@ozana.cz>",
+	"repository": "git@github.com:OzzyCzech/cmd-dialog.git",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
-	"main": "dist/cmd-dialog.js",
+	"version": "1.0.1",
+	"type": "module",
 	"module": "dist/cmd-dialog.js",
+	"main": "dist/cmd-dialog.js",
 	"exports": {
 		".": "./dist/cmd-dialog.js"
 	},
 	"types": "./types/cmd-dialog.d.ts",
-	"author": "Roman Ožana <roman@ozana.cz>",
-	"repository": "git@github.com:OzzyCzech/cmd-dialog.git",
+	"files": ["dist", "types"],
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build"
 	},
-	"type": "module",
+	"dependencies": {
+		"fuse.js": "^6.6.2",
+		"hotkeys-js": "^3.10.1",
+		"lit": "^2.6.1"
+	},
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.3",
 		"autoprefixer": "^10.4.13",
@@ -25,20 +31,11 @@
 		"typescript": "^4.9.5",
 		"vite": "^4.1.4"
 	},
-	"files": [
-		"dist",
-		"types"
-	],
 	"keywords": [
 		"keyboard",
 		"shortcuts",
 		"dialog",
 		"command",
 		"palette"
-	],
-	"dependencies": {
-		"fuse.js": "^6.6.2",
-		"hotkeys-js": "^3.10.1",
-		"lit": "^2.6.1"
-	}
+	]
 }
