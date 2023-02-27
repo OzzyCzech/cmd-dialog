@@ -37,7 +37,7 @@ export type Action = {
 	/**
 	 * Handler of the action (optional)
 	 */
-	onAction?: (action: Action) => { keepOpen?: boolean };
+	onAction?: (action: Action) => {keepOpen?: boolean};
 
 	/**
 	 * Tags of the action (optional)

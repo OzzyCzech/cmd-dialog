@@ -72,7 +72,9 @@ export class CmdDialog extends LitElement {
 	 * Open the dialog.
 	 */
 	public open() {
-		this.dialog.showModal();
+		if (!this.dialog.open) {
+			this.dialog.showModal();
+		}
 	}
 
 	/**

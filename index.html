@@ -13,10 +13,7 @@
 	<script type="module" src="src/cmd-dialog.ts"></script>
 	<script type="module">
 		const dialog = document.querySelector('cmd-dialog');
-
-		// load data from JSON file
-		const response = await fetch('/fuse.json');
-		const actions = await response.json();
+		import actions from './fuse.json';
 
 		// add custom actions
 		actions.unshift(
