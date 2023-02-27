@@ -6,11 +6,8 @@ export default defineConfig({
 		target: 'esnext',
 		lib: {
 			name: 'cmd-dialog',
-			entry: ['src/cmd-dialog.ts', 'index.html'],
+			entry: ['src/cmd-dialog.ts', 'demo.html'],
 			formats: ['es'],
-		},
-		rollupOptions: {
-			external: /^lit/,
-		},
+		}
 	},
 });
