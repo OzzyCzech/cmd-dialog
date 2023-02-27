@@ -11,12 +11,12 @@ Command dialog and keyboard shortcuts palette for web apps.
 
 ## Features
 
-* Keyboard navigation
-* Build in dark/light themes
-* Customizable action shortcuts with [hotkeys.js](https://wangchujiang.com/hotkeys/)
-* Responsive design
-* Native `<dialog>` element
-* Fuzzy search with [Fuse.js](https://fusejs.io/)
+- Keyboard navigation
+- Build in dark/light themes
+- Customizable action shortcuts with [hotkeys.js](https://wangchujiang.com/hotkeys/)
+- Responsive design
+- Native `<dialog>` element
+- Fuzzy search with [Fuse.js](https://fusejs.io/)
 
 ## Install
 
@@ -34,7 +34,7 @@ or inside module script
 
 ```html
 <script type="module">
-  import cmdDialog from 'https://esm.run/cmd-dialog'
+  import cmdDialog from 'https://esm.run/cmd-dialog';
 </script>
 ```
 

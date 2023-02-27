@@ -1,6 +1,6 @@
-import { LitElement, PropertyValues, TemplateResult } from "lit";
-import { Action } from "./action";
-import './cmd-action';
+import { LitElement, type PropertyValues, type TemplateResult } from 'lit';
+import { type Action } from './action.js';
+import './cmd-action.js';
 export declare class CmdDialog extends LitElement {
     static styles: import("lit").CSSResult;
     /**

@@ -1,6 +1,9 @@
-import { LitElement, TemplateResult } from 'lit';
-import { Action } from "./action";
+import { LitElement, type TemplateResult } from 'lit';
+import { type Action } from './action.js';
 export declare class CmdAction extends LitElement {
+    /**
+     * The styles
+     */
     static styles: import("lit").CSSResult;
     /**
      * The mode of the dialog (dark/light).
@@ -14,11 +17,11 @@ export declare class CmdAction extends LitElement {
      * Is the action selected
      */
     selected: boolean;
+    constructor();
     /**
      * Scroll to show element
      */
     ensureInView(): void;
-    constructor();
     /**
      * Click event
      */

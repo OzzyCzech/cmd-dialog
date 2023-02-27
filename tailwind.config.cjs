@@ -5,10 +5,10 @@ module.exports = {
 	theme: {
 		extend: {},
 	},
-	darkMode: 'class', // or 'media' or 'class'
+	darkMode: 'class', // Or 'media' or 'class'
 	plugins: [
 		require('@tailwindcss/forms'),
-		plugin(function ({addComponents}) {
+		plugin(({addComponents}) => {
 			addComponents({
 				'.debug': {
 					outline: '1px dashed red',

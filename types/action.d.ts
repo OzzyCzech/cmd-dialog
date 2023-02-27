@@ -1,4 +1,4 @@
-export interface Action {
+export type Action = {
     /**
      * Title of the action
      */
@@ -31,9 +31,11 @@ export interface Action {
     /**
      * Handler of the action (optional)
      */
-    handler?: Function;
+    onAction?: (action: Action) => {
+        keepOpen?: boolean;
+    };
     /**
      * Tags of the action (optional)
      */
     tags?: string[];
-}
+};

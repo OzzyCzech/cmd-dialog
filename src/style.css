@@ -10,7 +10,7 @@
 
 	dialog {
 		@apply p-0;
-		@apply transition-all antialiased leading-normal tracking-normal;
+		@apply font-sans text-base leading-normal tracking-normal antialiased transition-all;
 		@apply shadow-xl shadow-neutral-900/10;
 		@apply w-full mx-auto max-w-2xl transition-all overflow-hidden rounded-xl;
 		@apply border border-neutral-200;
