@@ -4,17 +4,13 @@ import {defineConfig} from 'vite';
 export default defineConfig({
 	build: {
 		target: 'esnext',
-		sourcemap: true,
 		lib: {
 			name: 'cmd-dialog',
-			entry: 'src/cmd-dialog.ts',
+			entry: ['src/cmd-dialog.ts', 'index.html'],
 			formats: ['es'],
 		},
 		rollupOptions: {
-			input: {
-				app: 'index.html',
-			},
-			external: ['lit'],
+			external: /^lit/,
 		},
 	},
 });
