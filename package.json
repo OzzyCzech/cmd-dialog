@@ -19,6 +19,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
+		"vercel-build": "tsc && vite build --config vite.config.vercel.js",
 		"xo": "xo"
 	},
 	"dependencies": {

@@ -1,16 +1,16 @@
+import {resolve} from 'node:path'
 import {defineConfig} from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	build: {
 		target: 'esnext',
-		lib: {
-			name: 'cmd-dialog',
-			entry: ['src/cmd-dialog.ts'],
-			formats: ['es'],
-		},
-		rollupOptions: {
-			external: /^lit/,
+		build: {
+			rollupOptions: {
+				input: {
+					main: resolve(__dirname, 'index.html'),
+				},
+			},
 		},
 	},
 });
