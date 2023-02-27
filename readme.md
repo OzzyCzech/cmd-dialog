@@ -1,3 +1,8 @@
+[![NPM Downloads](https://img.shields.io/npm/dm/cmd-dialog?style=for-the-badge)](https://www.npmjs.com/package/cmd-dialog)
+[![NPM Version](https://img.shields.io/npm/v/cmd-dialog?style=for-the-badge)](https://www.npmjs.com/package/cmd-dialog)
+[![NPM License](https://img.shields.io/npm/l/cmd-dialog?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/blob/main/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/OzzyCzech/cmd-dialog?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/commit/main)
+
 # Command `<dialog>`
 
 Command dialog and keyboard shortcuts palette for web apps.
@@ -22,8 +27,15 @@ npm i cmd-dialog
 ### From CDN
 
 ```html
+<script type="module" src="https://esm.run/cmd-dialog"></script>
+```
 
-<script type="module">import 'https://unpkg.com/cmd-dialog?module';
+or inside module script
+
+```html
+<script type="module">
+  import cmdDialog from 'https://esm.run/cmd-dialog'
+</script>
 ```
 
 ## Usage
