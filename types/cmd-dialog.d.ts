@@ -64,6 +64,7 @@ export declare class CmdDialog extends LitElement {
     /**
      * Handle focus on action.
      * @param action
+     * @param $event
      * @private
      */
     private _actionFocused;
