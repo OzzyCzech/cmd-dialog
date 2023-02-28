@@ -11,7 +11,7 @@ Command dialog and keyboard shortcuts palette for web apps.
 
 ## Features
 
-- Keyboard navigation
+- Keyboard navigation4
 - Build in dark/light themes
 - Customizable action shortcuts with [hotkeys.js](https://wangchujiang.com/hotkeys/)
 - Responsive design
