@@ -5,19 +5,23 @@ const dialog = document.querySelector('cmd-dialog');
 // add custom actions
 dialog.actions = [
 	{
-		title: 'Dark theme example',
+		title: 'Dark theme',
+		description: 'Dark theme example',
 		url: '/dark.html',
 	},
 	{
-		title: 'Light theme example',
+		title: 'Light theme',
+		description: 'Light theme example',
 		url: '/light.html',
 	},
 	{
-		title: 'Remove footer',
-		url: '/no-footer.html',
+		title: 'Custom footer',
+		description: 'Customize the footer',
+		url: '/footer.html',
 	},
 	{
-		title: 'Customize styles',
+		title: 'Styles',
+		description: 'Customize the styles',
 		url: '/styles.html',
 	},
 ]
