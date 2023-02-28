@@ -8,10 +8,10 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script type="module" src="src/cmd-dialog.ts"></script>
 </head>
-<body class="bg-neutral-800 antialiased leading-normal tracking-normal">
+<body class="bg-neutral-800 text-neutral-300 antialiased leading-normal tracking-normal">
 <main class="flex h-screen items-center justify-center">
 
-	<code class="text-neutral-300 text-[8rem] font-bold">⌘+K</code>
+	<code class="text-[8rem] font-bold">⌘+K</code>
 
 	<cmd-dialog
 		theme="light"
@@ -66,10 +66,7 @@
 		);
 
 		dialog.actions = actions;
-	</script>
-
-	<script type="module">
-		import './examples/dark.html?raw';
+		//dialog.open();
 	</script>
 </main>
 </body>

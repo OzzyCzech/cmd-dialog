@@ -7,6 +7,7 @@ import Fuse from 'fuse.js';
 import hotkeys from 'hotkeys-js';
 
 import {type Action} from './action.js';
+import {CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
 import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
 
@@ -141,8 +142,6 @@ export class CmdDialog extends LitElement {
 			// Setup fuse search
 			this.fuse = new Fuse(this.actions,
 				{
-					// FindAllMatches: true,
-					// includeMatches: true,
 					keys: [
 						{name: 'title', weight: 2},
 						{name: 'tags', weight: 1},
@@ -181,7 +180,7 @@ export class CmdDialog extends LitElement {
 		}
 
 		const actionList: TemplateResult = html`
-			<ul>${repeat(
+			<ul part="action-list">${repeat(
 				this._results,
 				action =>
 					html`
@@ -189,8 +188,8 @@ export class CmdDialog extends LitElement {
 							.action=${action}
 							.selected=${live(action === this._selected)}
 							.theme=${this.theme}
-							@mouseover=${() => {
-								this._actionFocused(action);
+							@mouseover=${(event: MouseEvent) => {
+								this._actionFocused(action, event);
 							}}
 							@actionSelected=${(event: CustomEvent<Action>) => {
 								this._triggerAction(event.detail);
@@ -202,6 +201,7 @@ export class CmdDialog extends LitElement {
 
 		return html`
 			<dialog
+				part="dialog"
 				class="${this.theme}"
 				@close="${this.close}"
 				@click="${(event: MouseEvent) => {
@@ -211,8 +211,9 @@ export class CmdDialog extends LitElement {
 				}}">
 
 				<!-- Header -->
-				<form>
+				<form part="dialog-form">
 					<input
+						part="input"
 						type="text"
 						spellcheck="false"
 						autocomplete="off"
@@ -223,11 +224,11 @@ export class CmdDialog extends LitElement {
 				</form>
 
 				<!-- Action list -->
-				<main>${actionList}</main>
+				<main part="dialog-body">${actionList}</main>
 
 				<!-- Footer -->
 				<slot name="footer">
-					<p><kbd>⏎</kbd> to select <kbd>↑</kbd> <kbd>↓</kbd> to navigate <kbd>esc</kbd> to close</p>
+					<p><kbd part="kbd">⏎</kbd> to select <kbd part="kbd">↑</kbd> <kbd part="kbd">↓</kbd> to navigate <kbd part="kbd">esc</kbd> to close</p>
 					${unsafeHTML(this.note ?? `<span>${this._results.length} options</span>`)}
 				</slot>
 			</dialog>
@@ -249,6 +250,7 @@ export class CmdDialog extends LitElement {
 				'change', {
 					detail: {
 						search: input.value,
+						actions: this._results,
 					},
 					bubbles: true,
 					composed: true,
@@ -259,10 +261,12 @@ export class CmdDialog extends LitElement {
 	/**
 	 * Handle focus on action.
 	 * @param action
+	 * @param $event
 	 * @private
 	 */
-	private _actionFocused(action: Action) {
+	private _actionFocused(action: Action, $event: MouseEvent) {
 		this._selected = action;
+		($event.target as CmdAction).ensureInView();
 	}
 
 	/**
@@ -283,19 +287,17 @@ export class CmdDialog extends LitElement {
 			}),
 		);
 
-		if (!action) {
-			return;
-		}
-
 		// Trigger action
-		if (action.onAction) {
-			const result = action.onAction(action);
-			if (!result?.keepOpen) {
+		if (action) {
+			if (action.onAction) {
+				const result = action.onAction(action);
+				if (!result?.keepOpen) {
+					this.close();
+				}
+			} else if (action.url) {
+				window.open(action.url, action.target ?? '_self');
 				this.close();
 			}
-		} else if (action.url) {
-			window.open(action.url, action.target ?? '_self');
-			this.close();
 		}
 	}
 

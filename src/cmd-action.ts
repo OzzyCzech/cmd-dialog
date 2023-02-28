@@ -73,9 +73,9 @@ export class CmdAction extends LitElement {
 		};
 
 		return html`
-			<li class=${classMap(classes)}>
+			<li class=${classMap(classes)} part="action ${this.selected ? 'selected' : ''}">
 				${this.img}
-				<strong>
+				<strong part="title">
 					${this.action.title}
 					${this.description}
 				</strong>
@@ -97,7 +97,7 @@ export class CmdAction extends LitElement {
 				.replace('ctrl', '⌃')
 				.toUpperCase()
 				.split('+');
-			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd>${hotkey}</kbd>`)}</span>` : '';
+			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : '';
 		}
 
 		return nothing;
@@ -108,7 +108,7 @@ export class CmdAction extends LitElement {
 	 * @private
 	 */
 	private get description() {
-		return this.action.description ? html`<small>${this.action.description}</small>` : nothing;
+		return this.action.description ? html`<small part="description">${this.action.description}</small>` : nothing;
 	}
 
 	/**
