@@ -12,4 +12,12 @@ dialog.actions = [
 		title: 'Light theme example',
 		url: '/light.html',
 	},
+	{
+		title: 'Remove footer',
+		url: '/no-footer.html',
+	},
+	{
+		title: 'Customize styles',
+		url: '/styles.html',
+	},
 ]
