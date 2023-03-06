@@ -7,7 +7,7 @@ import Fuse from 'fuse.js';
 import hotkeys from 'hotkeys-js';
 
 import {type Action} from './action.js';
-import {CmdAction} from './cmd-action.js';
+import {type CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
 import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
 

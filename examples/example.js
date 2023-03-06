@@ -1,8 +1,8 @@
-import 'https://esm.run/cmd-dialog';
+import 'https://esm.run/cmd-dialog'; // eslint-disable-line import/no-unassigned-import
 
 const dialog = document.querySelector('cmd-dialog');
 
-// add custom actions
+// Add custom actions
 dialog.actions = [
 	{
 		title: 'Dark theme',
@@ -24,4 +24,4 @@ dialog.actions = [
 		description: 'Customize the styles',
 		url: '/styles.html',
 	},
-]
+];
