@@ -95,7 +95,6 @@ export class CmdAction extends LitElement {
 				.replace('shift', '⇧')
 				.replace('alt', '⌥')
 				.replace('ctrl', '⌃')
-				.toUpperCase()
 				.split('+');
 			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : '';
 		}
