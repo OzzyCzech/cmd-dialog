@@ -127,7 +127,7 @@ export class CmdDialog extends LitElement {
 					&& event.key !== 'ArrowDown'
 					&& event.key !== 'Tab'
 				)));
-		}
+		};
 	}
 
 	override disconnectedCallback() {
