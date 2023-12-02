@@ -121,7 +121,7 @@ export class CmdDialog extends LitElement {
 
 		// Prevent hotkeys used when our dialog is open
 		hotkeys.filter = function(event) {
-			return !this.dialog.open;
+			return !document.querySelector('cmd-dialog').dialog.open;
 		}
 	}
 
