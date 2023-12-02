@@ -118,6 +118,11 @@ export class CmdDialog extends LitElement {
 				this._triggerAction(this._results[this._selectedIndex]);
 			}
 		});
+
+		// Prevent hotkeys used when our dialog is open
+		hotkeys.filter = function(event) {
+			return !this.dialog.open;
+		}
 	}
 
 	override disconnectedCallback() {
