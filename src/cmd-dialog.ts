@@ -120,9 +120,9 @@ export class CmdDialog extends LitElement {
 		});
 
 		// Prevent hotkeys used when our dialog is open
-		hotkeys.filter = function(event) {
+		hotkeys.filter = function (event) {
 			return !document.querySelector('cmd-dialog').dialog.open;
-		}
+		};
 	}
 
 	override disconnectedCallback() {
