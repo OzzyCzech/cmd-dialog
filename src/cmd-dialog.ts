@@ -11,7 +11,6 @@ import {type CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
 import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
 
-
 @customElement('cmd-dialog')
 export class CmdDialog extends LitElement {
 	static override styles = unsafeCSS(style);
@@ -37,22 +36,14 @@ export class CmdDialog extends LitElement {
 	@property({type: String}) hotkey = 'cmd+k,ctrl+k';
 
 	/**
-	 * Callback when dialog is closed
+	 * Callback when dialog is closed (optional)
 	 */
-	@property({type: Function}) onClose = () => {
-	};
+	@property({type: Function}) onClose = Function;
 
 	/**
-	 * Callback when dialog is opened
+	 * Callback when dialog is opened (optional)
 	 */
-	@property({type: Function}) onOpen = () => {
-	};
-
-	/**
-	 * Hotkeys instance
-	 * @private
-	 */
-	@state() private _hotkeys: Hotkeys = hotkeys.noConflict();
+	@property({type: Function}) onOpen = Function;
 
 	/**
 	 * Array of actions
@@ -63,6 +54,12 @@ export class CmdDialog extends LitElement {
 			return true;
 		},
 	}) actions = [] as Action[];
+
+	/**
+	 * Hotkeys instance
+	 * @private
+	 */
+	@state() private readonly _hotkeys: Hotkeys = hotkeys.noConflict();
 
 	/**
 	 * Search input value
@@ -180,8 +177,7 @@ export class CmdDialog extends LitElement {
 		if (changedProperties.has('actions')) {
 			// Register action hotkeys
 			for (const action of this.actions.filter(item => Boolean(item.hotkey))) {
-
-				const {key, ...options} = typeof action.hotkey === 'object' ? action.hotkey : {key: action.hotkey as string, scope: 'all'};
+				const {key, ...options} = typeof action.hotkey === 'object' ? action.hotkey : {key: action.hotkey!, scope: 'all'};
 
 				hotkeys(
 					key,

@@ -24,8 +24,7 @@ export type Hotkey = {
 	 * @see https://github.com/jaywcjlove/hotkeys-js#option
 	 */
 	splitKey?: string;
-}
-
+};
 
 export type Action = {
 	/**
@@ -66,7 +65,7 @@ export type Action = {
 	/**
 	 * Handler of the action (optional)
 	 */
-	onAction?: (action: Action, isDialogOpen?: Boolean) => { keepOpen?: boolean };
+	onAction?: (action: Action, isDialogOpen?: boolean) => {keepOpen?: boolean};
 
 	/**
 	 * Tags of the action (optional)
