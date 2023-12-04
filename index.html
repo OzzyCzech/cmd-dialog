@@ -58,14 +58,14 @@
     actions.unshift(
       {
         title: 'Outside action',
-        hotkey: {key: 'a', scope: 'outside'},
+        hotkey: {key: 'x', scope: 'outside'},
         description: 'Open dialog',
         onAction() {
-          alert('Default oustide action');
+          alert('Default oustide action triggered with hotkey "x"');
         },
       },
     );
-    
+
     dialog.actions = actions;
     //dialog.open();
 	</script>
