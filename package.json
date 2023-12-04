@@ -22,19 +22,19 @@
 		"xo": "xo"
 	},
 	"dependencies": {
-		"fuse.js": "^6.6.2",
-		"hotkeys-js": "^3.10.1",
-		"lit": "^2.6.1"
+		"fuse.js": "^7.0.0",
+		"hotkeys-js": "^3.12.2",
+		"lit": "^3.1.0"
 	},
 	"devDependencies": {
-		"@tailwindcss/forms": "^0.5.3",
-		"autoprefixer": "^10.4.13",
-		"cssnano": "^5.1.15",
-		"postcss": "^8.4.21",
-		"tailwindcss": "^3.2.7",
-		"typescript": "^4.9.5",
-		"vite": "^4.1.4",
-		"xo": "^0.53.1"
+		"@tailwindcss/forms": "^0.5.7",
+		"autoprefixer": "^10.4.16",
+		"cssnano": "^6.0.1",
+		"postcss": "^8.4.32",
+		"tailwindcss": "^3.3.5",
+		"typescript": "^5.3.2",
+		"vite": "^5.0.4",
+		"xo": "^0.56.0"
 	},
 	"keywords": [
 		"keyboard",
@@ -52,7 +52,8 @@
 			"@typescript-eslint/consistent-type-definitions": "off",
 			"@typescript-eslint/naming-convention": "off",
 			"@typescript-eslint/no-non-null-asserted-optional-chain": "off",
-			"@typescript-eslint/indent": "off"
+			"@typescript-eslint/indent": "off",
+			"unicorn/prefer-at": "off"
 		},
 		"ignores": [
 			"dist",
