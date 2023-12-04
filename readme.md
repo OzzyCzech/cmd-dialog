@@ -3,6 +3,7 @@
 [![NPM License](https://img.shields.io/npm/l/cmd-dialog?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/blob/main/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/OzzyCzech/cmd-dialog?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/commit/main)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/OzzyCzech/cmd-dialog/main.yml?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/actions)
+
 # Command `<dialog>`
 
 Command dialog and keyboard shortcuts palette for web apps.
@@ -11,7 +12,7 @@ Command dialog and keyboard shortcuts palette for web apps.
 
 ## Features
 
-- Keyboard navigation4
+- Keyboard navigation
 - Build in dark/light themes
 - Customizable action shortcuts with [hotkeys.js](https://wangchujiang.com/hotkeys/)
 - Responsive design

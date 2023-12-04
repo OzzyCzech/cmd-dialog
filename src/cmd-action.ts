@@ -39,7 +39,7 @@ export class CmdAction extends LitElement {
 	 */
 	private get hotkeys() {
 		if (this.action?.hotkey) {
-			const hotkeys = this.action.hotkey
+			const hotkeys = (typeof this.action.hotkey === 'object' ? this.action.hotkey?.key as string : this.action.hotkey as string)
 				.replace('cmd', '⌘')
 				.replace('shift', '⇧')
 				.replace('alt', '⌥')

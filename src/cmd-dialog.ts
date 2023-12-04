@@ -5,10 +5,12 @@ import {repeat} from 'lit/directives/repeat.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import Fuse from 'fuse.js';
 import hotkeys from 'hotkeys-js';
+import {type Hotkeys} from 'hotkeys-js';
 import {type Action} from './action.js';
 import {type CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
 import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
+
 
 @customElement('cmd-dialog')
 export class CmdDialog extends LitElement {
@@ -33,6 +35,24 @@ export class CmdDialog extends LitElement {
 	 * Open dialog hotkey
 	 */
 	@property({type: String}) hotkey = 'cmd+k,ctrl+k';
+
+	/**
+	 * Callback when dialog is closed
+	 */
+	@property({type: Function}) onClose = () => {
+	};
+
+	/**
+	 * Callback when dialog is opened
+	 */
+	@property({type: Function}) onOpen = () => {
+	};
+
+	/**
+	 * Hotkeys instance
+	 * @private
+	 */
+	@state() private _hotkeys: Hotkeys = hotkeys.noConflict();
 
 	/**
 	 * Array of actions
@@ -69,6 +89,13 @@ export class CmdDialog extends LitElement {
 	private fuse: Fuse<Action> | undefined;
 
 	/**
+	 * Return the hotkeys instance.
+	 */
+	get hotkeys(): Hotkeys {
+		return this._hotkeys;
+	}
+
+	/**
 	 * Return the dialog element.
 	 */
 	get dialog(): HTMLDialogElement {
@@ -96,6 +123,7 @@ export class CmdDialog extends LitElement {
 	public open() {
 		if (!this.dialog.open) {
 			this.dialog.showModal();
+			this.onOpen();
 		}
 	}
 
@@ -103,36 +131,37 @@ export class CmdDialog extends LitElement {
 	 * Close the dialog.
 	 */
 	public close() {
-		hotkeys.setScope('all');
 		this.input.value = '';
+		this._hotkeys.setScope('outside');
 		this.dialog.close();
+		this.onClose();
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
 
 		// Open dialog
-		hotkeys(this.hotkey, 'all', event => {
+		this._hotkeys(this.hotkey, 'all', event => {
 			this.open();
-			hotkeys.setScope('dialog');
+			this.hotkeys.setScope('dialog');
 			event.preventDefault();
 		});
 
 		// Select next
-		hotkeys('down,tab', 'dialog', event => {
+		this._hotkeys('down,tab', 'dialog', event => {
 			this._selected = this._selectedIndex >= this._results.length - 1 ? this._results[0] : this._results[this._selectedIndex + 1];
 			event.preventDefault();
 		});
 
 		// Select previous
-		hotkeys('up,shift+tab', 'dialog', event => {
-			this._selected = this._selectedIndex === 0 ? this._results[this._results.length - 1] : this._results[this._selectedIndex - 1];
-			event.preventDefault();
+		this._hotkeys('up,shift+tab', 'dialog', event => {
+				this._selected = this._selectedIndex === 0 ? this._results[this._results.length - 1] : this._results[this._selectedIndex - 1];
+				event.preventDefault();
 			},
 		);
 
 		// Trigger action
-		hotkeys('enter', 'dialog', event => {
+		this._hotkeys('enter', 'dialog', event => {
 			this._triggerAction(this._results[this._selectedIndex]);
 			event.preventDefault();
 		});
@@ -141,20 +170,26 @@ export class CmdDialog extends LitElement {
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		// Unregister hotkeys
-		hotkeys.unbind(this.hotkey, 'all');
-		hotkeys.unbind('down,tab', 'dialog');
-		hotkeys.unbind('up,shift+tab', 'dialog');
-		hotkeys.unbind('enter', 'dialog');
+		this._hotkeys.unbind(this.hotkey, 'all');
+		this._hotkeys.unbind('down,tab', 'dialog');
+		this._hotkeys.unbind('up,shift+tab', 'dialog');
+		this._hotkeys.unbind('enter', 'dialog');
 	}
 
 	override update(changedProperties: PropertyValues<this>) {
 		if (changedProperties.has('actions')) {
 			// Register action hotkeys
 			for (const action of this.actions.filter(item => Boolean(item.hotkey))) {
-				hotkeys(action.hotkey ?? '', 'all', event => {
-					event.preventDefault();
-					this._triggerAction(action);
-				});
+
+				const {key, ...options} = typeof action.hotkey === 'object' ? action.hotkey : {key: action.hotkey as string, scope: 'all'};
+
+				hotkeys(
+					key,
+					options,
+					(event: KeyboardEvent) => {
+						event.preventDefault();
+						this._triggerAction(action);
+					});
 			}
 
 			// Setup fuse search
