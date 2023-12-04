@@ -1,11 +1,10 @@
-import {html, LitElement, unsafeCSS, type PropertyValues, type TemplateResult} from 'lit';
+import {html, LitElement, type PropertyValues, type TemplateResult, unsafeCSS} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {live} from 'lit/directives/live.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import Fuse from 'fuse.js';
 import hotkeys from 'hotkeys-js';
-
 import {type Action} from './action.js';
 import {type CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
@@ -70,6 +69,28 @@ export class CmdDialog extends LitElement {
 	private fuse: Fuse<Action> | undefined;
 
 	/**
+	 * Return the dialog element.
+	 */
+	get dialog(): HTMLDialogElement {
+		return this.shadowRoot?.querySelector('dialog')!;
+	}
+
+	/**
+	 * Return the input element.
+	 */
+	get input(): HTMLInputElement {
+		return this.shadowRoot?.querySelector('input')!;
+	}
+
+	/**
+	 * Return the index of the selected action.
+	 * @private
+	 */
+	private get _selectedIndex(): number {
+		return this._selected ? this._results.indexOf(this._selected) : -1;
+	}
+
+	/**
 	 * Open the dialog.
 	 */
 	public open() {
@@ -82,6 +103,7 @@ export class CmdDialog extends LitElement {
 	 * Close the dialog.
 	 */
 	public close() {
+		hotkeys.setScope('all');
 		this.input.value = '';
 		this.dialog.close();
 	}
@@ -90,55 +112,46 @@ export class CmdDialog extends LitElement {
 		super.connectedCallback();
 
 		// Open dialog
-		hotkeys(this.hotkey, event => {
+		hotkeys(this.hotkey, 'all', event => {
 			this.open();
+			hotkeys.setScope('dialog');
 			event.preventDefault();
 		});
 
 		// Select next
-		hotkeys('down,tab', event => {
-			if (this.dialog.open) {
-				event.preventDefault();
-				this._selected = this._selectedIndex >= this._results.length - 1 ? this._results[0] : this._results[this._selectedIndex + 1];
-			}
+		hotkeys('down,tab', 'dialog', event => {
+			this._selected = this._selectedIndex >= this._results.length - 1 ? this._results[0] : this._results[this._selectedIndex + 1];
+			event.preventDefault();
 		});
 
 		// Select previous
-		hotkeys('up,shift+tab', event => {
-			if (this.dialog.open) {
-				event.preventDefault();
-				this._selected = this._selectedIndex === 0 ? this._results[this._results.length - 1] : this._results[this._selectedIndex - 1];
-			}
-		});
+		hotkeys('up,shift+tab', 'dialog', event => {
+			this._selected = this._selectedIndex === 0 ? this._results[this._results.length - 1] : this._results[this._selectedIndex - 1];
+			event.preventDefault();
+			},
+		);
 
 		// Trigger action
-		hotkeys('enter', event => {
-			if (this.dialog.open) {
-				event.preventDefault();
-				this._triggerAction(this._results[this._selectedIndex]);
-			}
+		hotkeys('enter', 'dialog', event => {
+			this._triggerAction(this._results[this._selectedIndex]);
+			event.preventDefault();
 		});
-
-		// Prevent hotkeys used when our dialog is open
-		hotkeys.filter = function (event) {
-			return !document.querySelector('cmd-dialog').dialog.open;
-		};
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		// Unregister hotkeys
-		hotkeys.unbind(this.hotkey);
-		hotkeys.unbind('down,tab');
-		hotkeys.unbind('up,shift+tab');
-		hotkeys.unbind('enter');
+		hotkeys.unbind(this.hotkey, 'all');
+		hotkeys.unbind('down,tab', 'dialog');
+		hotkeys.unbind('up,shift+tab', 'dialog');
+		hotkeys.unbind('enter', 'dialog');
 	}
 
 	override update(changedProperties: PropertyValues<this>) {
 		if (changedProperties.has('actions')) {
 			// Register action hotkeys
 			for (const action of this.actions.filter(item => Boolean(item.hotkey))) {
-				hotkeys(action.hotkey ?? '', event => {
+				hotkeys(action.hotkey ?? '', 'all', event => {
 					event.preventDefault();
 					this._triggerAction(action);
 				});
@@ -304,28 +317,6 @@ export class CmdDialog extends LitElement {
 				this.close();
 			}
 		}
-	}
-
-	/**
-	 * Return the index of the selected action.
-	 * @private
-	 */
-	private get _selectedIndex(): number {
-		return this._selected ? this._results.indexOf(this._selected) : -1;
-	}
-
-	/**
-	 * Return the dialog element.
-	 */
-	get dialog(): HTMLDialogElement {
-		return this.shadowRoot?.querySelector('dialog')!;
-	}
-
-	/**
-	 * Return the input element.
-	 */
-	get input(): HTMLInputElement {
-		return this.shadowRoot?.querySelector('input')!;
 	}
 }
 
