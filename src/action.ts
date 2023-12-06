@@ -40,7 +40,7 @@ export type Action = {
 	/**
 	 * Handler of the action (optional)
 	 */
-	onAction?: (action: Action, isDialogOpen?: boolean) => {keepOpen?: boolean};
+	onAction?: (event?: KeyboardEvent | CustomEvent) => boolean;
 
 	/**
 	 * Tags of the action (optional)

@@ -39,11 +39,13 @@ export class CmdAction extends LitElement {
 	 */
 	private get hotkeys() {
 		if (this.action?.hotkey) {
-			const hotkeys = (typeof this.action.hotkey === 'object' ? this.action.hotkey?.key || '' : this.action.hotkey)
-				.replace('cmd', '⌘')
-				.replace('shift', '⇧')
-				.replace('alt', '⌥')
-				.replace('ctrl', '⌃')
+			const hotkeys = this.action.hotkey
+				.replace('$mod', /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? '⌘' : 'Ctrl')
+				.replace('Meta', '⌘')
+				.replace('Control', '⌃')
+				.replace('Shift', '⇧')
+				.replace('Alt', '⌥')
+				.replace('Control', '⌃')
 				.split('+');
 			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : '';
 		}

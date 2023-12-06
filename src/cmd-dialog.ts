@@ -4,8 +4,7 @@ import {live} from 'lit/directives/live.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import Fuse from 'fuse.js';
-import hotkeys from 'hotkeys-js';
-import {type Hotkeys} from 'hotkeys-js';
+import {tinykeys} from 'tinykeys';
 import {type Action} from './action.js';
 import {type CmdAction} from './cmd-action.js';
 import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
@@ -32,8 +31,10 @@ export class CmdDialog extends LitElement {
 
 	/**
 	 * Open dialog hotkey
+	 * Meta+K (Mac) or Ctrl+K (Windows)
+	 * @see https://github.com/jamiebuilds/tinykeys
 	 */
-	@property({type: String}) hotkey = 'cmd+k,ctrl+k';
+	@property({type: String}) hotkey = '$mod+k';
 
 	/**
 	 * Callback when dialog is closed (optional)
@@ -54,12 +55,6 @@ export class CmdDialog extends LitElement {
 			return true;
 		},
 	}) actions = [] as Action[];
-
-	/**
-	 * Hotkeys instance
-	 * @private
-	 */
-	@state() private readonly _hotkeys: Hotkeys = hotkeys.noConflict();
 
 	/**
 	 * Search input value
@@ -86,13 +81,6 @@ export class CmdDialog extends LitElement {
 	private fuse: Fuse<Action> | undefined;
 
 	/**
-	 * Return the hotkeys instance.
-	 */
-	get hotkeys(): Hotkeys {
-		return this._hotkeys;
-	}
-
-	/**
 	 * Return the dialog element.
 	 */
 	get dialog(): HTMLDialogElement {
@@ -115,6 +103,13 @@ export class CmdDialog extends LitElement {
 	}
 
 	/**
+	 * Return if the dialog is open.
+	 */
+	get isOpen() {
+		return this.dialog.open;
+	}
+
+	/**
 	 * Open the dialog.
 	 */
 	public open() {
@@ -129,63 +124,71 @@ export class CmdDialog extends LitElement {
 	 */
 	public close() {
 		this.input.value = '';
-		this._hotkeys.setScope('outside');
 		this.dialog.close();
 		this.onClose();
+	}
+
+	/**
+	 * Toggle the dialog.
+	 */
+	public toggle() {
+		if (this.dialog.open) {
+			this.close();
+		} else {
+			this.open();
+		}
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
 
-		// Open dialog
-		this._hotkeys(this.hotkey, 'all', event => {
-			this.open();
-			this.hotkeys.setScope('dialog');
+		// Activate/deactivate dialog
+		const toggleDialog = (event: KeyboardEvent) => {
+			this.toggle();
 			event.preventDefault();
-		});
+		};
 
-		// Select next
-		this._hotkeys('down,tab', 'dialog', event => {
-			this._selected = this._selectedIndex >= this._results.length - 1 ? this._results[0] : this._results[this._selectedIndex + 1];
-			event.preventDefault();
-		});
+		for (const hotkey of this.hotkey.split('|')) {
+			tinykeys(window, {[hotkey]: toggleDialog});
+		}
 
-		// Select previous
-		this._hotkeys('up,shift+tab', 'dialog', event => {
+		const navigate = {
+			next: (event: KeyboardEvent) => {
+				this._selected = this._selectedIndex >= this._results.length - 1 ? this._results[0] : this._results[this._selectedIndex + 1];
+				event.preventDefault();
+			},
+			prev: (event: KeyboardEvent) => {
 				this._selected = this._selectedIndex === 0 ? this._results[this._results.length - 1] : this._results[this._selectedIndex - 1];
 				event.preventDefault();
 			},
-		);
+			open: (event: KeyboardEvent) => {
+				this._triggerAction(this._results[this._selectedIndex], event);
+				event.preventDefault();
+			},
+		};
 
-		// Trigger action
-		this._hotkeys('enter', 'dialog', event => {
-			this._triggerAction(this._results[this._selectedIndex]);
-			event.preventDefault();
+		// Navigate through actions
+		tinykeys(this, {
+			ArrowUp: navigate.prev,
+			'Shift+Tab': navigate.prev,
+			ArrowDown: navigate.next,
+			Tab: navigate.next,
+			Enter: navigate.open,
 		});
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		// Unregister hotkeys
-		this._hotkeys.unbind(this.hotkey, 'all');
-		this._hotkeys.unbind('down,tab', 'dialog');
-		this._hotkeys.unbind('up,shift+tab', 'dialog');
-		this._hotkeys.unbind('enter', 'dialog');
 	}
 
 	override update(changedProperties: PropertyValues<this>) {
 		if (changedProperties.has('actions')) {
 			// Register action hotkeys
 			for (const action of this.actions.filter(item => Boolean(item.hotkey))) {
-				const {key, ...options} = typeof action.hotkey === 'object' ? action.hotkey : {key: action.hotkey!, scope: 'all'};
-
-				hotkeys(
-					key,
-					options,
-					(event: KeyboardEvent) => {
-						event.preventDefault();
-						this._triggerAction(action);
+				const hotkeys = (action.hotkey!).split('|');
+				for (const hotkey of hotkeys) {
+					tinykeys(window, {
+						[hotkey]: (event: KeyboardEvent) => {
+							this._triggerAction(action, event);
+						},
 					});
+				}
 			}
 
 			// Setup fuse search
@@ -241,7 +244,7 @@ export class CmdDialog extends LitElement {
 								this._actionFocused(action, event);
 							}}
 							@actionSelected=${(event: CustomEvent<Action>) => {
-								this._triggerAction(event.detail);
+								this._triggerAction(event.detail, event);
 							}}
 						></cmd-action>
 					`)}
@@ -321,9 +324,10 @@ export class CmdDialog extends LitElement {
 	/**
 	 * Trigger the action.
 	 * @param action
+	 * @param event
 	 * @private
 	 */
-	private _triggerAction(action?: Action) {
+	private _triggerAction(action?: Action, event?: KeyboardEvent | CustomEvent) {
 		this._selected = action;
 
 		// Fire selected event even when action is empty/not selected,
@@ -339,8 +343,7 @@ export class CmdDialog extends LitElement {
 		// Trigger action
 		if (action) {
 			if (action.onAction) {
-				const result = action.onAction(action);
-				if (!result?.keepOpen) {
+				if (action.onAction(event)) {
 					this.close();
 				}
 			} else if (action.url) {
