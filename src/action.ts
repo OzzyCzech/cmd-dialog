@@ -29,7 +29,7 @@ export type Action = {
 	/**
 	 * URL of the action (optional)
 	 */
-	id?: string;
+	url?: string;
 
 	/**
 	 * Target of the action (optional)
