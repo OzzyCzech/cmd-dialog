@@ -1,4 +1,10 @@
 export type Action = {
+
+	/**
+	 * Unique id of the action (optional)
+	 */
+	id?: string;
+
 	/**
 	 * Title of the action
 	 */
@@ -16,23 +22,20 @@ export type Action = {
 
 	/**
 	 * Hotkey of the action (optional)
-	 * @see https://wangchujiang.com/hotkeys-js/
+	 * @see https://github.com/jamiebuilds/tinykeys
 	 */
 	hotkey?: string;
 
 	/**
-	 * Unique id of the action (optional)
+	 * URL of the action (optional)
 	 */
 	id?: string;
 
 	/**
 	 * Target of the action (optional)
+	 * default is `_self`
 	 */
 	target?: string;
-	/**
-	 * URL of the action (optional)
-	 */
-	url?: string;
 
 	/**
 	 * Handler of the action (optional)
