@@ -14,7 +14,7 @@ Command dialog and keyboard shortcuts palette for web apps.
 
 - Keyboard navigation
 - Build in dark/light themes
-- Customizable action shortcuts with [hotkeys.js](https://wangchujiang.com/hotkeys/)
+- Customizable action shortcuts with [tinykeys](https://github.com/jamiebuilds/tinykeys)
 - Responsive design
 - Native `<dialog>` element
 - Fuzzy search with [Fuse.js](https://fusejs.io/)
