@@ -81,11 +81,21 @@
             console.log('You activate the "A" action');
           }
         },
+      },
+      {
+        title: 'The "A" action',
+        hotkey: 'd i a l o g',
+        description: 'Do something',
+        onAction(event) {
+          if (!/TEXTAREA|INPUT|CMD-DIALOG/.test(event.target.tagName)) {
+            console.log('You activate the "A" action');
+          }
+        },
       }
     );
 
     dialog.actions = actions;
-    //dialog.open();
+    dialog.open();
 	</script>
 </main>
 </body>

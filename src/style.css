@@ -71,7 +71,7 @@
 	}
 
 	kbd {
-		@apply font-mono font-semibold whitespace-nowrap text-center;
+		@apply font-mono font-semibold whitespace-nowrap text-center tracking-wider;
 		@apply rounded-sm bg-neutral-700/20 dark:bg-neutral-800;
 		@apply inline-block px-1 mx-0.5 leading-normal;
 		@apply min-w-[1.3rem];

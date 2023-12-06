@@ -40,13 +40,15 @@ export class CmdAction extends LitElement {
 	private get hotkeys() {
 		if (this.action?.hotkey) {
 			const hotkeys = this.action.hotkey
-				.replace('$mod', /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? '⌘' : 'Ctrl')
-				.replace('Meta', '⌘')
-				.replace('Control', '⌃')
-				.replace('Shift', '⇧')
-				.replace('Alt', '⌥')
-				.replace('Control', '⌃')
-				.split('+');
+				.replaceAll('$mod', /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? '⌘' : 'Ctrl')
+				.replaceAll('Meta', '<span>⌘</span>')
+				.replaceAll('Control', '⌃')
+				.replaceAll('Shift', '⇧')
+				.replaceAll('Alt', '⌥')
+				.replaceAll('Control', '⌃')
+				.replaceAll('+', '')
+				.replaceAll(' ', '')
+				.split('|');
 			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : '';
 		}
 
