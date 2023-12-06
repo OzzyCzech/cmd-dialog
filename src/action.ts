@@ -1,31 +1,3 @@
-export type Hotkey = {
-	/**
-	 * Hotkey keys
-	 *
-	 * @see https://wangchujiang.com/hotkeys-js
-	 */
-	key: string;
-
-	/**
-	 * Hotkey scope (default is all)
-	 *
-	 * there are three scopes options:
-	 * - `all` - (default) hotkeys are active everywhere
-	 * - `outside` - hotkeys are active only when the dialog is closed
-	 * - `any value` - your custom scope that need to be activated manually
-	 *
-	 * @see https://github.com/jaywcjlove/hotkeys-js#option
-	 */
-	scope?: string;
-
-	/**
-	 * Split key (default is '+')
-	 *
-	 * @see https://github.com/jaywcjlove/hotkeys-js#option
-	 */
-	splitKey?: string;
-};
-
 export type Action = {
 	/**
 	 * Title of the action
@@ -46,7 +18,7 @@ export type Action = {
 	 * Hotkey of the action (optional)
 	 * @see https://wangchujiang.com/hotkeys-js/
 	 */
-	hotkey?: string | Hotkey;
+	hotkey?: string;
 
 	/**
 	 * Unique id of the action (optional)
