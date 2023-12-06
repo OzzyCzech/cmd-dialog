@@ -30,7 +30,7 @@
         title: 'Homepage',
         img: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
         description: 'Go to homepage',
-        hotkey: '/',
+        hotkey: '$mod+h',
         onAction(event) {
           window.location.href = '/';
           event.preventDefault();
@@ -75,10 +75,11 @@
       {
         title: 'The "A" action',
         hotkey: 'a',
-        description: 'Close dialog',
+        description: 'Do something',
         onAction(event) {
-          console.log('You activate the "A" action');
-          //event.preventDefault();
+          if (!/TEXTAREA|INPUT|CMD-DIALOG/.test(event.target.tagName)) {
+            console.log('You activate the "A" action');
+          }
         },
       }
     );
