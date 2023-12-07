@@ -318,16 +318,15 @@ export class CmdDialog extends LitElement {
 	 * @private
 	 */
 	private _triggerAction(action?: Action, parentEvent?: KeyboardEvent | CustomEvent) {
-
 		const actionEvent = new CustomEvent('action', {
 			detail: {
 				search: this._search,
 				action,
-				parentEvent
+				parentEvent,
 			},
 			bubbles: true,
 			composed: true,
-			cancelable: true
+			cancelable: true,
 		});
 
 		if (action && this.dispatchEvent(actionEvent)) {
