@@ -39,7 +39,7 @@
         event.detail.parentEvent instanceof KeyboardEvent &&
         event.detail.parentEvent.key !== 'Enter'
       ) {
-        event.preventDefault(); // do nothing
+        //event.preventDefault(); // do nothing
       }
     });
 
@@ -113,10 +113,6 @@
       }
     );
 
-
-    dialog.addEventListener('action', (event) => {
-
-    });
 
     dialog.actions = actions;
     //dialog.open();
