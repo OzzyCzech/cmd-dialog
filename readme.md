@@ -52,5 +52,5 @@ or inside module script
 
 - [LitElement](https://lit.dev/) - A simple base class for creating fast, lightweight web components.
 - [Fuse.js](https://fusejs.io/) - Lightweight fuzzy-search library.
-- [hotkeys.js](https://wangchujiang.com/hotkeys/) - A robust Javascript library for capturing keyboard input.
+- [tinykeys](https://github.com/jamiebuilds/tinykeys) - A robust Javascript library for capturing keyboard input.
 - [Ninja Keys](https://github.com/ssleptsov/ninja-keys) - Keyboard shortcuts for any web application.
