@@ -24,6 +24,25 @@
     const dialog = document.querySelector('cmd-dialog');
     import actions from './fuse.json';
 
+    // add event listener
+    dialog.addEventListener('open', () => {
+      console.log('Dialog opened');
+    });
+
+    dialog.addEventListener('close', () => {
+      console.log('Dialog closed');
+    });
+
+    dialog.addEventListener('action', (event) => {
+      if (
+        dialog.isOpen &&
+        event.detail.parentEvent instanceof KeyboardEvent &&
+        event.detail.parentEvent.key !== 'Enter'
+      ) {
+        event.preventDefault(); // do nothing
+      }
+    });
+
     // add custom actions
     actions.unshift(
       {
@@ -94,8 +113,13 @@
       }
     );
 
+
+    dialog.addEventListener('action', (event) => {
+
+    });
+
     dialog.actions = actions;
-    dialog.open();
+    //dialog.open();
 	</script>
 </main>
 </body>

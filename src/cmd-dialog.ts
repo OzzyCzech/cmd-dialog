@@ -37,16 +37,6 @@ export class CmdDialog extends LitElement {
 	@property({type: String}) hotkey = '$mod+k';
 
 	/**
-	 * Callback when dialog is closed (optional)
-	 */
-	@property({type: Function}) onClose = Function;
-
-	/**
-	 * Callback when dialog is opened (optional)
-	 */
-	@property({type: Function}) onOpen = Function;
-
-	/**
 	 * Array of actions
 	 */
 	@property({
@@ -115,7 +105,7 @@ export class CmdDialog extends LitElement {
 	public open() {
 		if (!this.dialog.open) {
 			this.dialog.showModal();
-			this.onOpen();
+			this.dispatchEvent(new CustomEvent('open', {detail: this}));
 		}
 	}
 
@@ -125,7 +115,7 @@ export class CmdDialog extends LitElement {
 	public close() {
 		this.input.value = '';
 		this.dialog.close();
-		this.onClose();
+		this.dispatchEvent(new CustomEvent('close', {detail: this}));
 	}
 
 	/**
@@ -324,26 +314,27 @@ export class CmdDialog extends LitElement {
 	/**
 	 * Trigger the action.
 	 * @param action
-	 * @param event
+	 * @param parentEvent
 	 * @private
 	 */
-	private _triggerAction(action?: Action, event?: KeyboardEvent | CustomEvent) {
-		this._selected = action;
+	private _triggerAction(action?: Action, parentEvent?: KeyboardEvent | CustomEvent) {
 
-		// Fire selected event even when action is empty/not selected,
-		// so possible handle api search for example
-		this.dispatchEvent(
-			new CustomEvent('selected', {
-				detail: {search: this._search, action},
-				bubbles: true,
-				composed: true,
-			}),
-		);
+		const actionEvent = new CustomEvent('action', {
+			detail: {
+				search: this._search,
+				action,
+				parentEvent
+			},
+			bubbles: true,
+			composed: true,
+			cancelable: true
+		});
 
-		// Trigger action
-		if (action) {
+		if (action && this.dispatchEvent(actionEvent)) {
+			this._selected = action;
+
 			if (action.onAction) {
-				if (action.onAction(event)) {
+				if (action.onAction(parentEvent)) {
 					this.close();
 				}
 			} else if (action.url) {
