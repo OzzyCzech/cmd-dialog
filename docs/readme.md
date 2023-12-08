@@ -50,7 +50,7 @@ The `event.detail` has the following properties:
 - `action` - The action object.
 - `parentEvent` - The original event that caused the *action*. Can be either `KeyboardEvent` or `CustomEvent`.
 
-Event `action` si cancelable. If you want to prevent perform the action, you can call `event.preventDefault()`.
+Event `action` is cancelable. If you want to prevent perform the action, you can call `event.preventDefault()`.
 
 ```js
 // listen to action events
@@ -70,7 +70,7 @@ dialog.addEventListener('action', (event) => {
 ## Action
 
 `Action` is a json object that contains the information of a user's action in the dialog.
-Every can have the following properties:
+Every action can have the following properties:
 
 - `id` - The id of the action (*optional*).
 - `title` - The name of the action (**required**).
