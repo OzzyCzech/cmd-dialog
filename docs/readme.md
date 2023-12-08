@@ -1,4 +1,71 @@
-# Command dialog (cmd-dialog)
+# Command dialog (cmd-dialog) documentation
+
+## `cmd-dialog` element
+
+The `cmd-dialog` element is a custom element that represents the dialog box.
+
+```html
+<cmd-dialog [attributes]></cmd-dialog>
+
+<script type="module">
+	const dialog = document.querySelector('cmd-dialog');
+	dialog.actions = [
+		// ...
+	];
+</script>
+```
+
+### Dialog parameters
+
+- `actions` - List of actions. See [Action](#action) for more information.
+- `isOpen` - Boolean value that indicates whether the dialog is open or not.
+
+```js
+const dialog = document.querySelector('cmd-dialog');
+
+if (dialog.isOpen) {
+  // dialog is open
+}
+```
+
+### HTML Attributes
+
+- `theme` - Theme of the dialog. Possible values: `light` or `dark`. Default value is taken from browser preference.
+- `hotkey` - List of hotkeys. Default value: `$mod+k`.
+- `placeholder` - Placeholder text for the search input. Default value: `Type a command or search...`.
+- `note` - The note in the footer of the dialog box. Default value show number of options.
+
+### Custom events
+
+There is three custom events that are fired by the `cmd-dialog`.
+
+- `open` - fired when the dialog is opened.
+- `close` - fired when the dialog is closed.
+- `action` - fired when the action is selected.
+
+The event `action` is fired when the action is executed. It can be triggered by a keyboard shortcut, an enter key, or a mouse click.
+The `event.detail` has the following properties:
+
+- `search` - The search string from the search input.
+- `action` - The action object.
+- `parentEvent` - The original event that caused the *action*. Can be either `KeyboardEvent` or `CustomEvent`.
+
+Event `action` si cancelable. If you want to prevent perform the action, you can call `event.preventDefault()`.
+
+```js
+// listen to action events
+dialog.addEventListener('action', (event) => {
+
+  // event.detail.parentEvent can be either KeyboardEvent or CustomEvent 
+  if (
+    dialog.isOpen &&
+    event.detail.parentEvent instanceof KeyboardEvent &&
+    event.detail.parentEvent.key !== 'Enter'
+  ) {
+    event.preventDefault(); // do not fire action when dialog is open and key is not Enter
+  }
+});
+```
 
 ## Action
 
@@ -22,7 +89,7 @@ const actions = [
     title: 'Action 1',
     description: 'Description of action 1',
     img: '<svg>...</svg>',
-    hotkey: 'ctrl+a',
+    hotkey: 'Control+a',
     url: 'https://example.com',
     target: '_blank',
     onAction: () => console.log('Action was selected'),
@@ -101,9 +168,9 @@ const actions = [
 ];
 ```
 
-Event object can be weather [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) or
-`CustomEvent` depending on the action type. The `KeyboardEvent` is passed when the action is
-selected by the keyboard shortcut or by the `Enter` key. The `CustomEvent` is passed when the
+Event object can be either [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) or `CustomEvent` depending on the
+action type. The `KeyboardEvent` is passed when the action is selected by the keyboard
+shortcut or by the `Enter` key. The `CustomEvent` is passed when the
 action is selected by the mouse click.
 
 #### Preventing dialog from closing

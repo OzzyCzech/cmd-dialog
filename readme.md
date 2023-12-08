@@ -43,10 +43,7 @@ or inside module script
 
 ### Attributes
 
-- `theme` - Theme of the dialog. Possible values: `light` or `dark`. Default value is taken from browser preference.
-- `hotkey` - List of hotkeys. Default value: `ctrl+k,cmd+k`.
-- `placeholder` - Placeholder text for the search input. Default value: `Type a command or search...`.
-- `note` - The note in the footer of the dialog box. Default value show number of options.
+
 
 ## Dependencies
 
