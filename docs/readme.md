@@ -1,4 +1,6 @@
-# Action
+# Command dialog (cmd-dialog)
+
+## Action
 
 `Action` is a json object that contains the information of a user's action in the dialog.
 Every can have the following properties:
@@ -29,7 +31,7 @@ const actions = [
 ];
 ```
 
-## The `hotkey` property
+### The `hotkey` property
 
 The `hotkey` property is a string that contains the hotkey of the action.
 Every action can have a different hotkey. Single action can have
@@ -45,7 +47,7 @@ const actions = [
 ];
 ```
 
-## Set action icon
+### Set action icon
 
 The `img` property is a string that contains the SVG code for the action icon.
 
@@ -58,7 +60,7 @@ const actions = [
 ];
 ```
 
-## Open url action
+### Open url action
 
 If you want to open a new page when the action is selected, you can use the `url` property.
 With the `target` property you can specify the target of the link - the default value is `_self`.
@@ -74,7 +76,7 @@ const actions = [
 ];
 ```
 
-## Custom action callback
+### Custom action callback
 
 If you want to execute custom action when the action is selected, you can use the `onAction` property.
 The `onAction` property is a callback function that is called when the action is selected.
@@ -104,7 +106,7 @@ Event object can be weather [`KeyboardEvent`](https://developer.mozilla.org/en-U
 selected by the keyboard shortcut or by the `Enter` key. The `CustomEvent` is passed when the
 action is selected by the mouse click.
 
-### Preventing dialog from closing
+#### Preventing dialog from closing
 
 Your function can return `false` if you want to prevent the dialog from closing.
 
