@@ -39,12 +39,6 @@ or inside module script
 </script>
 ```
 
-## Usage
-
-### Attributes
-
-
-
 ## Dependencies
 
 - [LitElement](https://lit.dev/) - A simple base class for creating fast, lightweight web components.
