@@ -285,10 +285,10 @@ export class CmdDialog extends LitElement {
 	private async _onInput(event: InputEvent) {
 		const input = event.target as HTMLInputElement;
 		this._search = input.value;
-		
+
 		// Make sure we return to the top of the list after re-searching
 		this._selected = undefined;
-		
+
 		await this.updateComplete;
 
 		this.dispatchEvent(
