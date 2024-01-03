@@ -113,8 +113,20 @@ export class CmdDialog extends LitElement {
 	 * Close the dialog.
 	 */
 	public close() {
-		this.input.value = '';
+		console.log('close');
 		this.dialog.close();
+	}
+
+	/**
+	 * Handle on close event.
+	 * @protected
+	 */
+	protected onClose() {
+		console.log('onClose');
+		this.input.value = '';
+		this._selected = undefined;
+		this._results = this.actions;
+
 		this.dispatchEvent(new CustomEvent('close', {detail: this}));
 	}
 
@@ -240,12 +252,13 @@ export class CmdDialog extends LitElement {
 			<dialog
 				part="dialog"
 				class="${this.theme}"
-				@close="${this.close}"
+				@close="${this.onClose}"
 				@click="${(event: MouseEvent) => {
 					if (event.target === this.dialog) {
 						this.close();
-					} // Close on backdrop click
-				}}">
+					}
+				}}"
+			>
 
 				<!-- Header -->
 				<form part="dialog-form">
@@ -258,6 +271,11 @@ export class CmdDialog extends LitElement {
 						placeholder="${this.placeholder}"
 						autofocus
 					>
+					<button type="button" @click="${this.close}">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+						</svg>
+					</button>
 				</form>
 
 				<!-- Action list -->

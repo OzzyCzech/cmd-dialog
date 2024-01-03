@@ -26,6 +26,14 @@
 			@apply shadow-neutral-500/10;
 		}
 
+		form {
+			@apply flex flex-row justify-between items-center;
+		}
+
+		button[type="button"] {
+			@apply pr-4
+		}
+
 		input[type="text"] {
 			@apply text-2xl font-normal bg-transparent py-3 px-4 border-0 w-full placeholder:text-neutral-500 focus:ring-0 dark:text-white;
 		}
