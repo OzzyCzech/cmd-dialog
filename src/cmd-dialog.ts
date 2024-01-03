@@ -197,11 +197,6 @@ export class CmdDialog extends LitElement {
 
 	override render() {
 		// Search for matches
-		const results = this.fuse?.search(this._search);
-		if (results) {
-			this._results = results.map(item => item.item);
-		}
-
 		if (this._search.length > 0) {
 			const results = this.fuse?.search(this._search);
 			if (results) {
