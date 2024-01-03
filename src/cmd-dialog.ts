@@ -113,7 +113,6 @@ export class CmdDialog extends LitElement {
 	 * Close the dialog.
 	 */
 	public close() {
-		console.log('close');
 		this.dialog.close();
 	}
 
@@ -122,7 +121,6 @@ export class CmdDialog extends LitElement {
 	 * @protected
 	 */
 	protected onClose() {
-		console.log('onClose');
 		this.input.value = '';
 		this._selected = undefined;
 		this._results = this.actions;
