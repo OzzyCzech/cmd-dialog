@@ -117,18 +117,6 @@ export class CmdDialog extends LitElement {
 	}
 
 	/**
-	 * Handle on close event.
-	 * @protected
-	 */
-	protected onClose() {
-		this.input.value = '';
-		this._selected = undefined;
-		this._results = this.actions;
-
-		this.dispatchEvent(new CustomEvent('close', {detail: this}));
-	}
-
-	/**
 	 * Toggle the dialog.
 	 */
 	public toggle() {
@@ -286,6 +274,18 @@ export class CmdDialog extends LitElement {
 				</slot>
 			</dialog>
 		`;
+	}
+
+	/**
+	 * Handle on close event.
+	 * @protected
+	 */
+	protected onClose() {
+		this.input.value = '';
+		this._selected = undefined;
+		this._results = this.actions;
+
+		this.dispatchEvent(new CustomEvent('close', {detail: this}));
 	}
 
 	/**
