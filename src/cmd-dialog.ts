@@ -9,7 +9,6 @@ import Fuse from 'fuse.js';
 import {tinykeys} from 'tinykeys';
 import {type Action} from './action.js';
 import {type CmdAction} from './cmd-action.js';
-import './cmd-action.js'; // eslint-disable-line import/no-unassigned-import
 import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
 
 @customElement('cmd-dialog')
@@ -30,6 +29,11 @@ export class CmdDialog extends LitElement {
 	 * The footer notice for the dialog.
 	 */
 	@property({type: String}) note = '';
+
+	/**
+	 * Show the close button (default: false).
+	 */
+	@property({type: Boolean}) showCloseButton = false;
 
 	/**
 	 * Open dialog hotkey
@@ -259,7 +263,7 @@ export class CmdDialog extends LitElement {
 						placeholder="${this.placeholder}"
 						autofocus
 					>
-					<button type="button" @click="${this.close}">
+					<button type="button" @click="${this.close}" class="${this.showCloseButton ? '' : 'hidden'}">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
 						</svg>

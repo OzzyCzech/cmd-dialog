@@ -53,6 +53,7 @@
       "browser"
     ],
     "rules": {
+      "import/no-unassigned-import": "off",
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-non-null-asserted-optional-chain": "off",

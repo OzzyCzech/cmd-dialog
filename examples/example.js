@@ -1,4 +1,4 @@
-import 'https://esm.run/cmd-dialog'; // eslint-disable-line import/no-unassigned-import
+import 'https://esm.run/cmd-dialog';
 
 const dialog = document.querySelector('cmd-dialog');
 

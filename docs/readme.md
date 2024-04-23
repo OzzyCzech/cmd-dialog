@@ -34,6 +34,7 @@ if (dialog.isOpen) {
 - `hotkey` - List of hotkeys. Default value: `$mod+k`.
 - `placeholder` - Placeholder text for the search input. Default value: `Type a command or search...`.
 - `note` - The note in the footer of the dialog box. Default value show number of options.
+- `showCloseButton` - Boolean value that indicates whether the close button is visible. Default value: `false`.
 
 ### Custom events
 
