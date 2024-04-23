@@ -48,3 +48,8 @@ or inside module script
 ## Credits
 
 - [Ninja Keys](https://github.com/ssleptsov/ninja-keys) - Keyboard shortcuts for any web application.
+
+
+## License
+
+MIT
