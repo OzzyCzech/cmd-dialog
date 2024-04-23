@@ -16,7 +16,13 @@ export declare class CmdDialog extends LitElement {
      */
     note: string;
     /**
+     * Show the close button (default: false).
+     */
+    showCloseButton: boolean;
+    /**
      * Open dialog hotkey
+     * Meta+K (Mac) or Ctrl+K (Windows)
+     * @see https://github.com/jamiebuilds/tinykeys
      */
     hotkey: string;
     /**
@@ -44,6 +50,23 @@ export declare class CmdDialog extends LitElement {
      */
     private fuse;
     /**
+     * Return the dialog element.
+     */
+    get dialog(): HTMLDialogElement;
+    /**
+     * Return the input element.
+     */
+    get input(): HTMLInputElement;
+    /**
+     * Return the index of the selected action.
+     * @private
+     */
+    private get _selectedIndex();
+    /**
+     * Return if the dialog is open.
+     */
+    get isOpen(): boolean;
+    /**
      * Open the dialog.
      */
     open(): void;
@@ -51,10 +74,18 @@ export declare class CmdDialog extends LitElement {
      * Close the dialog.
      */
     close(): void;
+    /**
+     * Toggle the dialog.
+     */
+    toggle(): void;
     connectedCallback(): void;
-    disconnectedCallback(): void;
     update(changedProperties: PropertyValues<this>): void;
     render(): TemplateResult<1>;
+    /**
+     * Handle on close event.
+     * @protected
+     */
+    protected onClose(): void;
     /**
      * Render the results on input.
      * @param event
@@ -71,22 +102,10 @@ export declare class CmdDialog extends LitElement {
     /**
      * Trigger the action.
      * @param action
+     * @param parentEvent
      * @private
      */
     private _triggerAction;
-    /**
-     * Return the index of the selected action.
-     * @private
-     */
-    private get _selectedIndex();
-    /**
-     * Return the dialog element.
-     */
-    get dialog(): HTMLDialogElement;
-    /**
-     * Return the input element.
-     */
-    get input(): HTMLInputElement;
 }
 declare global {
     interface HTMLElementTagNameMap {

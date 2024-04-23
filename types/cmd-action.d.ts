@@ -19,20 +19,6 @@ export declare class CmdAction extends LitElement {
     selected: boolean;
     constructor();
     /**
-     * Scroll to show element
-     */
-    ensureInView(): void;
-    /**
-     * Click event
-     */
-    click(): void;
-    /**
-     * Updated
-     * @param changedProperties
-     */
-    updated(changedProperties: Map<string, unknown>): void;
-    render(): TemplateResult<1>;
-    /**
      * Get hotkeys
      * @private
      */
@@ -47,6 +33,20 @@ export declare class CmdAction extends LitElement {
      * @private
      */
     private get img();
+    /**
+     * Scroll to show element
+     */
+    ensureInView(): void;
+    /**
+     * Click event
+     */
+    click(): void;
+    /**
+     * Updated
+     * @param changedProperties
+     */
+    updated(changedProperties: Map<string, unknown>): void;
+    render(): TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

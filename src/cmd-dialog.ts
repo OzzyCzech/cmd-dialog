@@ -9,7 +9,8 @@ import Fuse from 'fuse.js';
 import {tinykeys} from 'tinykeys';
 import {type Action} from './action.js';
 import {type CmdAction} from './cmd-action.js';
-import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
+import './cmd-action.js';
+import style from './style.css?inline.css';
 
 @customElement('cmd-dialog')
 export class CmdDialog extends LitElement {
