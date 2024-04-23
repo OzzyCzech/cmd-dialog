@@ -21,7 +21,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "release": "np --no-release-draft",
-    "xo": "xo"
+    "xo": "xo",
+    "test": "xo && tsc --noEmit"
   },
   "dependencies": {
     "fuse.js": "^7.0.0",

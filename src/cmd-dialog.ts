@@ -1,4 +1,6 @@
-import {html, LitElement, type PropertyValues, type TemplateResult, unsafeCSS} from 'lit';
+import {
+	html, LitElement, type PropertyValues, type TemplateResult, unsafeCSS,
+} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {live} from 'lit/directives/live.js';
 import {repeat} from 'lit/directives/repeat.js';
@@ -259,7 +261,7 @@ export class CmdDialog extends LitElement {
 					>
 					<button type="button" @click="${this.close}">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
 						</svg>
 					</button>
 				</form>
