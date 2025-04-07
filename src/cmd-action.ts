@@ -1,14 +1,12 @@
-import {
-	html, LitElement, nothing, type TemplateResult, unsafeCSS,
-} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-import {classMap} from 'lit/directives/class-map.js';
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
-import {repeat} from 'lit/directives/repeat.js';
-import {type Action} from './action.js';
-import style from './style.css?inline'; // eslint-disable-line n/file-extension-in-import
+import { LitElement, type TemplateResult, html, nothing, unsafeCSS } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
+import { repeat } from "lit/directives/repeat.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import type { Action } from "./action.js";
+import style from "./style.css?inline";
 
-@customElement('cmd-action')
+@customElement("cmd-action")
 export class CmdAction extends LitElement {
 	/**
 	 * The styles
@@ -18,21 +16,21 @@ export class CmdAction extends LitElement {
 	/**
 	 * The mode of the dialog (dark/light).
 	 */
-	@property({type: String}) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	@property({ type: String }) theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 	/**
 	 * Action object
 	 */
-	@property({type: Object}) action!: Action;
+	@property({ type: Object }) action!: Action;
 
 	/**
 	 * Is the action selected
 	 */
-	@property({type: Boolean}) selected = false;
+	@property({ type: Boolean }) selected = false;
 
 	constructor() {
 		super();
-		this.addEventListener('click', this.click);
+		this.addEventListener("click", this.click);
 	}
 
 	/**
@@ -42,16 +40,16 @@ export class CmdAction extends LitElement {
 	private get hotkeys() {
 		if (this.action?.hotkey) {
 			const hotkeys = this.action.hotkey
-				.replaceAll('$mod', /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? '⌘' : 'Ctrl')
-				.replaceAll('Meta', '<span>⌘</span>')
-				.replaceAll('Control', '⌃')
-				.replaceAll('Shift', '⇧')
-				.replaceAll('Alt', '⌥')
-				.replaceAll('Control', '⌃')
-				.replaceAll('+', '')
-				.replaceAll(' ', '')
-				.split('|');
-			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, hotkey => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : '';
+				.replaceAll("$mod", /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? "⌘" : "Ctrl")
+				.replaceAll("Meta", "<span>⌘</span>")
+				.replaceAll("Control", "⌃")
+				.replaceAll("Shift", "⇧")
+				.replaceAll("Alt", "⌥")
+				.replaceAll("Control", "⌃")
+				.replaceAll("+", "")
+				.replaceAll(" ", "")
+				.split("|");
+			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, (hotkey) => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : "";
 		}
 
 		return nothing;
@@ -78,7 +76,7 @@ export class CmdAction extends LitElement {
 	 */
 	public ensureInView() {
 		requestAnimationFrame(() => {
-			this.scrollIntoView({block: 'nearest'});
+			this.scrollIntoView({ block: "nearest" });
 		});
 	}
 
@@ -87,7 +85,7 @@ export class CmdAction extends LitElement {
 	 */
 	override click() {
 		this.dispatchEvent(
-			new CustomEvent('actionSelected', {
+			new CustomEvent("actionSelected", {
 				detail: this.action,
 				bubbles: true,
 				composed: true,
@@ -100,7 +98,7 @@ export class CmdAction extends LitElement {
 	 * @param changedProperties
 	 */
 	override updated(changedProperties: Map<string, unknown>) {
-		if (changedProperties.has('selected') && this.selected) {
+		if (changedProperties.has("selected") && this.selected) {
 			this.ensureInView();
 		}
 	}
@@ -108,11 +106,11 @@ export class CmdAction extends LitElement {
 	override render() {
 		const classes = {
 			selected: this.selected,
-			dark: this.theme === 'dark',
+			dark: this.theme === "dark",
 		};
 
 		return html`
-			<li class=${classMap(classes)} part="action ${this.selected ? 'selected' : ''}">
+			<li class=${classMap(classes)} part="action ${this.selected ? "selected" : ""}">
 				${this.img}
 				<strong part="title">
 					${this.action.title}
@@ -126,6 +124,6 @@ export class CmdAction extends LitElement {
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'cmd-action': CmdAction;
+		"cmd-action": CmdAction;
 	}
 }

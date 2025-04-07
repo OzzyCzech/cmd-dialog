@@ -1,17 +1,17 @@
-const plugin = require('tailwindcss/plugin');
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-	content: ['src/**/*.{ts,html}'],
+	content: ["src/**/*.{ts,html}"],
 	theme: {
 		extend: {},
 	},
-	darkMode: 'class', // Or 'media' or 'class'
+	darkMode: "class", // Or 'media' or 'class'
 	plugins: [
-		require('@tailwindcss/forms'),
-		plugin(({addComponents}) => {
+		require("@tailwindcss/forms"),
+		plugin(({ addComponents }) => {
 			addComponents({
-				'.debug': {
-					outline: '1px dashed red',
+				".debug": {
+					outline: "1px dashed red",
 				},
 			});
 		}),

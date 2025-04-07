@@ -1,5 +1,4 @@
 export type Action = {
-
 	/**
 	 * Unique id of the action (optional)
 	 */
