@@ -26,21 +26,22 @@
 		"release": "np"
 	},
 	"dependencies": {
+		"@tailwindcss/postcss": "^4.1.8",
+		"@tailwindcss/vite": "^4.1.8",
 		"fuse.js": "^7.1.0",
-		"lit": "^3.2.1",
+		"lit": "^3.3.0",
 		"tinykeys": "^3.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@tailwindcss/forms": "^0.5.7",
 		"@types/css-modules": "^1.0.5",
 		"autoprefixer": "^10.4.21",
-		"cssnano": "^7.0.6",
+		"cssnano": "^7.0.7",
 		"np": "^10.2.0",
-		"postcss": "^8.5.3",
-		"tailwindcss": "^3.4.3",
+		"postcss": "^8.5.4",
+		"tailwindcss": "^4.1.8",
 		"typescript": "^5.8.3",
-		"vite": "^6.2.5"
+		"vite": "^6.3.5"
 	},
 	"keywords": [
 		"keyboard",

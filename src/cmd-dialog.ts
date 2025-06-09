@@ -275,7 +275,30 @@ export class CmdDialog extends LitElement {
 
 				<!-- Footer -->
 				<slot name="footer">
-					<p><kbd part="kbd">⏎</kbd> to select <kbd part="kbd">↑</kbd> <kbd part="kbd">↓</kbd> to navigate <kbd part="kbd">esc</kbd> to close</p>
+					<p>
+						<kbd part="kbd" aria-label="Select action">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+							     class="lucide lucide-arrow-up-icon lucide-arrow-up size-3">
+								<path d="M20 4v7a4 4 0 0 1-4 4H4"/>
+								<path d="m9 10-5 5 5 5"/>
+							</svg>
+						</kbd>
+						to select
+						<kbd part="kbd" aria-label="Navigate Up">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+							     class="lucide lucide-arrow-up-icon lucide-arrow-up size-3">
+								<path d="m5 12 7-7 7 7"/>
+								<path d="M12 19V5"/>
+							</svg>
+						</kbd>
+						<kbd part="kbd" aria-label="Navigate down">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+							     class="lucide lucide-arrow-down-icon lucide-arrow-down size-3">
+								<path d="M12 5v14"/>
+								<path d="m19 12-7 7-7-7"/>
+							</svg>
+						</kbd> to navigate <kbd part="kbd">esc</kbd> to close
+					</p>
 					${unsafeHTML(this.note ?? `<span>${this._results.length} options</span>`)}
 				</slot>
 			</dialog>
