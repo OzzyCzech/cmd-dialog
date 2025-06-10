@@ -4,7 +4,8 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Command dialog demo</title>
+	<title>Demo of cmd-dialog</title>
+	<meta name="description" content="Demo page of cmd-dialog, a command dialog component for web applications."/>
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	<style type="text/tailwindcss">
 		@import "tailwindcss";
@@ -22,31 +23,47 @@
 		note="<a href=https://github.com/OzzyCzech/cmd-dialog>cmd-dialog demo</a>"
 	></cmd-dialog>
 
-	<article class="text-center flex flex-col gap-8">
-		<h1 class="text-5xl lg:text-6xl xl:text-7xl">cmd-dialog demo</h1>
-		<p class="text-2xl">Command dialog and keyboard shortcuts palette for web apps.</p>
+	<article class="flex flex-col text-center items-center justify-center gap-6 p-4">
 
-		<p class="text-5xl lg:text-6xl xl:text-7xl font-semibold">
-			Press <code>⌘+K</code> <span class="opacity-20">/</span> <code>Ctrl+K</code>
+		<p class="text-5xl lg:text-6xl xl:text-8xl font-semibold leading-relaxed">
+			Press
+			<kbd class="inline-flex items-center shadow bg-gray-600 rounded-xl py-2 px-6 leading-none">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-command-icon lucide-command size-12 lg:size-14 xl:size-20">
+					<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/>
+				</svg>
+				+K
+		</kbd>
+			or
+			<kbd class="inline-flex items-center shadow bg-gray-600 rounded-xl py-2 px-4 leading-none">Ctrl+K</kbd>
 		</p>
 
-		<p class="flex flex-wrap items-center justify-center gap-2 my-6">
-			<a href="https://www.npmjs.com/package/cmd-dialog" target="_blank"><img src="https://img.shields.io/npm/dm/cmd-dialog?style=for-the-badge" alt="Downloads"></a>
-			<a href="https://www.npmjs.com/package/cmd-dialog" target="_blank"><img src="https://img.shields.io/npm/v/cmd-dialog?style=for-the-badge" alt="Version"></a>
-			<a href="https://github.com/OzzyCzech/cmd-dialog/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/npm/l/cmd-dialog?style=for-the-badge" alt="License"></a>
-			<a href="https://github.com/OzzyCzech/cmd-dialog/commit/main" target="_blank"><img src="https://img.shields.io/github/last-commit/OzzyCzech/cmd-dialog?style=for-the-badge" alt="Last commit"></a>
-			<a href="https://github.com/OzzyCzech/cmd-dialog/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/OzzyCzech/cmd-dialog/main.yml?style=for-the-badge" alt="Workflow status"></a>
+		<div>
+			<p class="text-2xl text-gray-300">
+				Demo page of <code>cmd-dialog</code> a command <strong class="font-semibold">dialog component</strong> for web applications.
+			</p>
+		</div>
+
+		<p class="flex flex-wrap items-center justify-center gap-1.5">
+			<a href="https://www.npmjs.com/package/cmd-dialog" target="_blank"><img src="https://img.shields.io/npm/dm/cmd-dialog?style=for-the-badge" alt="Downloads" class="rounded"></a>
+			<a href="https://www.npmjs.com/package/cmd-dialog" target="_blank"><img src="https://img.shields.io/npm/v/cmd-dialog?style=for-the-badge" alt="Version" class="rounded"></a>
+			<a href="https://github.com/OzzyCzech/cmd-dialog/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/npm/l/cmd-dialog?style=for-the-badge" alt="License" class="rounded"></a>
+			<a href="https://github.com/OzzyCzech/cmd-dialog/commit/main" target="_blank"><img src="https://img.shields.io/github/last-commit/OzzyCzech/cmd-dialog?style=for-the-badge" alt="Last commit" class="rounded"></a>
+			<a href="https://github.com/OzzyCzech/cmd-dialog/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/OzzyCzech/cmd-dialog/main.yml?style=for-the-badge" alt="Workflow status" class="rounded"></a>
 		</p>
 
 		<p class="flex flex-wrap items-center justify-center gap-3">
-			<button class="py-3 px-6 bg-gray-700 hover:bg-gray-600 rounded-full hover:text-current hover:no-underline inline-flex items-center" onclick="document.querySelector('cmd-dialog').open()">Open dialog</button>
-			<a href="https://github.com/OzzyCzech/cmd-dialog/tree/main/docs" target="_blank" class="py-3 px-6 bg-gray-700 hover:bg-gray-600 rounded-full hover:text-current hover:no-underline inline-flex items-center">Documentation</a>
-			<a href="https://github.com/OzzyCzech/cmd-dialog/" target="_blank" class="py-3 px-6 bg-gray-700 hover:bg-gray-600 rounded-full hover:text-current hover:no-underline inline-flex items-center">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-5 h-5 mr-2" viewBox="0 0 16 16">
-					<path
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-				</svg>
-				GitHub</a>
+			<button type="button" class="py-3 px-6 bg-gray-700 hover:bg-gray-800 rounded-full hover:text-current hover:no-underline inline-flex gap-2 items-center cursor-pointer" onclick="document.querySelector('cmd-dialog').open()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-captions-icon lucide-captions size-5"><rect width="18" height="14" x="3" y="5" rx="2" ry="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
+				Open dialog
+			</button>
+			<a href="https://github.com/OzzyCzech/cmd-dialog/tree/main/docs" target="_blank" class="py-3 px-6 bg-gray-700 hover:bg-gray-800 rounded-full hover:text-current hover:no-underline inline-flex gap-2 items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-captions-icon lucide-captions size-5"><rect width="18" height="14" x="3" y="5" rx="2" ry="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
+				Documentation
+			</a>
+			<a href="https://github.com/OzzyCzech/cmd-dialog/" target="_blank" class="py-3 px-6 bg-gray-700 hover:bg-gray-800 rounded-full hover:text-current hover:no-underline inline-flex gap-2 items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github size-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+				GitHub
+			</a>
 		</p>
 	</article>
 
@@ -78,7 +95,7 @@
     actions.unshift(
       {
         title: 'Homepage',
-        img: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
+        img: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
         description: 'Go to homepage',
         hotkey: '$mod+h',
         onAction(event) {
@@ -88,19 +105,19 @@
       },
       {
         title: 'GitHub',
-        img: `<svg viewBox="0 0 256 249" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet"><g fill="currentColor"><path d="M127.505 0C57.095 0 0 57.085 0 127.505c0 56.336 36.534 104.13 87.196 120.99 6.372 1.18 8.712-2.766 8.712-6.134 0-3.04-.119-13.085-.173-23.739-35.473 7.713-42.958-15.044-42.958-15.044-5.8-14.738-14.157-18.656-14.157-18.656-11.568-7.914.872-7.752.872-7.752 12.804.9 19.546 13.14 19.546 13.14 11.372 19.493 29.828 13.857 37.104 10.6 1.144-8.242 4.449-13.866 8.095-17.05-28.32-3.225-58.092-14.158-58.092-63.014 0-13.92 4.981-25.295 13.138-34.224-1.324-3.212-5.688-16.18 1.235-33.743 0 0 10.707-3.427 35.073 13.07 10.17-2.826 21.078-4.242 31.914-4.29 10.836.048 21.752 1.464 31.942 4.29 24.337-16.497 35.029-13.07 35.029-13.07 6.94 17.563 2.574 30.531 1.25 33.743 8.175 8.929 13.122 20.303 13.122 34.224 0 48.972-29.828 59.756-58.22 62.912 4.573 3.957 8.648 11.717 8.648 23.612 0 17.06-.148 30.791-.148 34.991 0 3.393 2.295 7.369 8.759 6.117 50.634-16.879 87.122-64.656 87.122-120.973C255.009 57.085 197.922 0 127.505 0"/><path d="M47.755 181.634c-.28.633-1.278.823-2.185.389-.925-.416-1.445-1.28-1.145-1.916.275-.652 1.273-.834 2.196-.396.927.415 1.455 1.287 1.134 1.923M54.027 187.23c-.608.564-1.797.302-2.604-.589-.834-.889-.99-2.077-.373-2.65.627-.563 1.78-.3 2.616.59.834.899.996 2.08.36 2.65M58.33 194.39c-.782.543-2.06.034-2.849-1.1-.781-1.133-.781-2.493.017-3.038.792-.545 2.05-.055 2.85 1.07.78 1.153.78 2.513-.019 3.069M65.606 202.683c-.699.77-2.187.564-3.277-.488-1.114-1.028-1.425-2.487-.724-3.258.707-.772 2.204-.555 3.302.488 1.107 1.026 1.445 2.496.7 3.258M75.01 205.483c-.307.998-1.741 1.452-3.185 1.028-1.442-.437-2.386-1.607-2.095-2.616.3-1.005 1.74-1.478 3.195-1.024 1.44.435 2.386 1.596 2.086 2.612M85.714 206.67c.036 1.052-1.189 1.924-2.705 1.943-1.525.033-2.758-.818-2.774-1.852 0-1.062 1.197-1.926 2.721-1.951 1.516-.03 2.758.815 2.758 1.86M96.228 206.267c.182 1.026-.872 2.08-2.377 2.36-1.48.27-2.85-.363-3.039-1.38-.184-1.052.89-2.105 2.367-2.378 1.508-.262 2.857.355 3.049 1.398"/></g></svg>`,
+        img: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
         hotkey: '$mod+g',
-        description: 'Check source code on GitHub',
+        description: 'Check source code of cmd-dialog on GitHub',
         onAction(event) {
           window.open('https://github.com/OzzyCzech/cmd-dialog', '_blank');
           event.preventDefault();
         },
       },
       {
-        title: 'Email me',
+        title: 'Email author',
         hotkey: '$mod+e',
-        description: 'at roman@ozana.cz',
-        img: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`,
+        description: 'Send an email to roman@ozana.cz',
+        img: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-at-sign-icon lucide-at-sign"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>`,
         tags: ['email'],
         onAction(event) {
           window.location.href = 'mailto:roman@ozana.cz';
@@ -145,7 +162,10 @@
     );
 
     dialog.actions = actions;
-    //dialog.open(); // for debugging purposes
+
+    if (window.location.hostname === 'localhost') {
+	    //dialog.open(); // for dev purposes
+		}
 	</script>
 </main>
 </body>

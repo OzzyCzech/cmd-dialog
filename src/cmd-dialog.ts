@@ -264,8 +264,9 @@ export class CmdDialog extends LitElement {
 						autofocus
 					>
 					<button type="button" @click="${this.close}" class="${this.showCloseButton ? "" : "hidden"}">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x size-6">
+							<path d="M18 6 6 18"/>
+							<path d="m6 6 12 12"/>
 						</svg>
 					</button>
 				</form>
