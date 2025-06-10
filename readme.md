@@ -48,8 +48,9 @@ import cmdDialog from 'https://esm.run/cmd-dialog';
 ## Credits
 
 - [Ninja Keys](https://github.com/ssleptsov/ninja-keys) - Keyboard shortcuts for any web application.
+- 
 
 
 ## License
 
-MIT
+[MIT]()

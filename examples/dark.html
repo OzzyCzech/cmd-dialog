@@ -5,7 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Example - dark theme</title>
-	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	<style type="text/tailwindcss">
+		@import "tailwindcss";
+		@custom-variant dark (&:where(.dark, .dark *));
+	</style>
 	<script type="module" src="example.js"></script>
 </head>
 <body class="bg-neutral-800 antialiased leading-normal tracking-normal">
