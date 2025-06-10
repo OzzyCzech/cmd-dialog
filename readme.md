@@ -35,7 +35,7 @@ or inside module script
 
 ```html
 <script type="module">
-	import cmdDialog from 'https://esm.run/cmd-dialog';
+import cmdDialog from 'https://esm.run/cmd-dialog';
 </script>
 ```
 
