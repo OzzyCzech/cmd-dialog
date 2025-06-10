@@ -28,14 +28,16 @@ npm i cmd-dialog
 ### From CDN
 
 ```html
+
 <script type="module" src="https://esm.run/cmd-dialog"></script>
 ```
 
 or inside module script
 
 ```html
+
 <script type="module">
-import cmdDialog from 'https://esm.run/cmd-dialog';
+	import cmdDialog from 'https://esm.run/cmd-dialog';
 </script>
 ```
 
@@ -47,10 +49,10 @@ import cmdDialog from 'https://esm.run/cmd-dialog';
 
 ## Credits
 
-- [Ninja Keys](https://github.com/ssleptsov/ninja-keys) - Keyboard shortcuts for any web application.
-- 
+- [Lucide](https://lucide.dev/) - A collection of open-source icons, used for the dialog actions.
 
+This project is inspired by [Ninja Keys](https://github.com/ssleptsov/ninja-keys).
 
 ## License
 
-[MIT]()
+[MIT](./LICENSE)
