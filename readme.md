@@ -49,8 +49,9 @@ or inside module script
 
 ## Credits
 
-- Icons by [Lucide](https://lucide.dev) – licensed under the ISC License.
-- `cmd-dialog` was inspired by [Ninja Keys](https://github.com/ssleptsov/ninja-keys).
+- Icons by [Lucide](https://lucide.dev) – licensed under the [ISC License](https://lucide.dev/license).
+- The `cmd-dialog` is inspired by [Ninja Keys](https://github.com/ssleptsov/ninja-keys), which offers a similar command
+  palette and keyboard shortcuts.
 
 ## License
 
