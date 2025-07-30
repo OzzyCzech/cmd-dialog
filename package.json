@@ -2,7 +2,7 @@
 	"name": "cmd-dialog",
 	"author": "Roman Ožana <roman@ozana.cz> (https://ozana.cz)",
 	"repository": "OzzyCzech/cmd-dialog",
-	"homepage": "https://cmd-dialog.vercel.app/",
+	"homepage": "https://ozzyczech.github.io/cmd-dialog/",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
 	"version": "2.1.1",
 	"type": "module",
