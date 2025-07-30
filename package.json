@@ -19,7 +19,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "tsc && vite build && biome check --write",
 		"test": "tsc --noEmit",
 		"format": "biome check --write",
 		"format:check": "biome check .",
