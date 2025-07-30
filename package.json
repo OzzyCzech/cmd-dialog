@@ -4,7 +4,7 @@
 	"repository": "OzzyCzech/cmd-dialog",
 	"homepage": "https://cmd-dialog.vercel.app/",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"type": "module",
 	"module": "dist/cmd-dialog.js",
 	"main": "dist/cmd-dialog.js",
