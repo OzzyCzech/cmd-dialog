@@ -29,9 +29,9 @@ npm i cmd-dialog
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cmd Dialog Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cmd Dialog Example</title>
 </head>
 <body>
 <cmd-dialog/>
@@ -44,14 +44,14 @@ import { CmdDialog } from "cmd-dialog";
 
 const dialog = document.querySelector('cmd-dialog');
 dialog.actions = [
-	{
-		"title": "Author's website",
-		"description": "Roman's personal website",
-		"url": "https://ozana.cz",
-		"target": "_blank",
-		"tags": ["homepage", "contact", "email"]
-	},
-	// ...
+  {
+    "title": "Author's website",
+    "description": "Roman's personal website",
+    "url": "https://ozana.cz",
+    "target": "_blank",
+    "tags": ["homepage", "contact", "email"]
+  },
+  // ...
 ];
 ```
 
