@@ -6,11 +6,10 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"includes": ["**", "!**/dist/**/*.*", "!**/package.json", "!**/src/style.css"]
+		"includes": ["**", "!**/dist/**", "!**/package.json", "!**/src/style.css"]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab",
 		"lineWidth": 240
 	},
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
@@ -18,11 +17,6 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double"
 		}
 	}
 }
