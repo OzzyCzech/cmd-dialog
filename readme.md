@@ -25,17 +25,49 @@ Command dialog and keyboard shortcuts palette for web apps.
 npm i cmd-dialog
 ```
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cmd Dialog Example</title>
+</head>
+<body>
+  <cmd-dialog/>
+  <script type="module" src="./main.js"></script> 
+</body>
+```
+
+```javascript
+import { CmdDialog } from "cmd-dialog";
+
+const dialog = document.querySelector('cmd-dialog');
+dialog.actions = [
+  {
+    "title": "Author's website",
+    "description": "Roman's personal website",
+    "url": "https://ozana.cz",
+    "target": "_blank",
+    "tags": ["homepage", "contact", "email"]
+  },
+  // ...
+];
+```
+
 ### From CDN
+
+Add the following script tag to your HTML file to use the `cmd-dialog` component from a CDN:
 
 ```html
 <script type="module" src="https://esm.run/cmd-dialog"></script>
 ```
 
-or inside module script
+### From ESM
 
 ```html
 <script type="module">
-  import cmdDialog from 'https://esm.run/cmd-dialog';
+import CmdDialog from 'https://esm.run/cmd-dialog';
 </script>
 ```
 
