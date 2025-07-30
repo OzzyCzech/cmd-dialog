@@ -62,14 +62,14 @@ See the [docs](docs/readme.md) for more details on how to use the `cmd-dialog` c
 Add the following script tag to your HTML file to use the `cmd-dialog` component from a CDN:
 
 ```html
-<script type="module" src="https://esm.run/cmd-dialog"></script>
+<script type="module" src="https://esm.run/cmd-dialog@latest"></script>
 ```
 
 ### From ESM
 
 ```html
 <script type="module">
-import CmdDialog from 'https://esm.run/cmd-dialog';
+import CmdDialog from 'https://esm.run/cmd-dialog@latest';
 </script>
 ```
 
