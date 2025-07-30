@@ -55,6 +55,8 @@ dialog.actions = [
 ];
 ```
 
+See the [docs](docs/readme.md) for more details on how to use the `cmd-dialog` component.
+
 ### From CDN
 
 Add the following script tag to your HTML file to use the `cmd-dialog` component from a CDN:
