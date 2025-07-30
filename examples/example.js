@@ -1,4 +1,4 @@
-import "https://esm.run/cmd-dialog";
+import "https://esm.sh/cmd-dialog";
 
 const dialog = document.querySelector("cmd-dialog");
 
