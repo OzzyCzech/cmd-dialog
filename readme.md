@@ -70,7 +70,7 @@ following options:
 
 ```html
 <script type="module">
-import CmdDialog from 'https://esm.sh/cmd-dialog';
+  import CmdDialog from 'https://esm.sh/cmd-dialog';
 </script>
 ```
 
