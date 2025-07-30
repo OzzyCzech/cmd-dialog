@@ -1,4 +1,4 @@
-import { LitElement, type TemplateResult, html, nothing, unsafeCSS } from "lit";
+import { html, LitElement, nothing, type TemplateResult, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { repeat } from "lit/directives/repeat.js";

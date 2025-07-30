@@ -21,8 +21,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"test": "tsc --noEmit",
-		"format": "biome format --write",
-		"lint": "biome lint",
+		"format": "biome check --write",
+		"format:check": "biome check .",
 		"release": "np"
 	},
 	"dependencies": {

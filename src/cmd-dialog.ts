@@ -1,5 +1,5 @@
 import Fuse from "fuse.js";
-import { LitElement, type PropertyValues, type TemplateResult, html, unsafeCSS } from "lit";
+import { html, LitElement, type PropertyValues, type TemplateResult, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { live } from "lit/directives/live.js";
 import { repeat } from "lit/directives/repeat.js";
