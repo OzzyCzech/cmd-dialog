@@ -28,16 +28,14 @@ npm i cmd-dialog
 ### From CDN
 
 ```html
-
 <script type="module" src="https://esm.run/cmd-dialog"></script>
 ```
 
 or inside module script
 
 ```html
-
 <script type="module">
-	import cmdDialog from 'https://esm.run/cmd-dialog';
+  import cmdDialog from 'https://esm.run/cmd-dialog';
 </script>
 ```
 
