@@ -6,7 +6,7 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"includes": ["**", "!**/dist/**", "!**/package.json", "!**/src/style.css"]
+		"includes": ["**", "!**/dist/**", "!**/types/**", "!**/package.json", "!**/src/style.css"]
 	},
 	"formatter": {
 		"enabled": true,
