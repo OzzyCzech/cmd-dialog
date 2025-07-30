@@ -6,8 +6,8 @@
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
 	"version": "2.1.1",
 	"type": "module",
-	"module": "dist/cmd-dialog.js",
-	"main": "dist/cmd-dialog.js",
+	"module": "./dist/cmd-dialog.js",
+	"main": "./dist/cmd-dialog.js",
 	"exports": {
 		".": "./dist/cmd-dialog.js"
 	},
