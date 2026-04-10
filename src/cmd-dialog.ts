@@ -377,6 +377,7 @@ export class CmdDialog extends LitElement {
 	 */
 	protected onClose() {
 		this.input.value = "";
+		this._search = "";
 		this._selected = undefined;
 		this._results = this.actions;
 
