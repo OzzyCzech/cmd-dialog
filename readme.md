@@ -4,91 +4,74 @@
 [![Last Commit](https://img.shields.io/github/last-commit/OzzyCzech/cmd-dialog?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/commit/main)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/OzzyCzech/cmd-dialog/main.yml?style=for-the-badge)](https://github.com/OzzyCzech/cmd-dialog/actions)
 
-# Command `<dialog>`
+# cmd-dialog
 
-Command dialog and keyboard shortcuts palette for web apps.
+A fast, keyboard-driven command dialog and shortcuts palette for web apps.
 
-![](./assets/cmd.dialog.light.png)
+![Light theme](./assets/cmd.dialog.light.png)
+![Dark theme](./assets/cmd.dialog.dark.png)
 
 ## Features
 
+- Built-in dark/light themes
 - Keyboard navigation
-- Build in dark/light themes
 - Customizable action shortcuts with [tinykeys](https://github.com/jamiebuilds/tinykeys)
+- Fuzzy search with [Fuse.js](https://fusejs.io/)
 - Native `<dialog>` element
 - Responsive design
-- Fuzzy search with [Fuse.js](https://fusejs.io/)
 
-## Install
+## Installation
 
 ```shell
-npm i cmd-dialog
+pnpm add cmd-dialog
 ```
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cmd Dialog Example</title>
-	</head>
-	<body>
-		<cmd-dialog />
-		<script type="module" src="./main.js"></script>
-	</body>
-</html>
-```
-
-```javascript
-import { CmdDialog } from "cmd-dialog";
-
-const dialog = document.querySelector("cmd-dialog");
-dialog.actions = [
-	{
-		title: "Author's website",
-		description: "Roman's personal website",
-		url: "https://ozana.cz",
-		target: "_blank",
-		tags: ["homepage", "contact", "email"],
-	},
-	// ...
-];
-```
-
-See the [docs](docs/readme.md) for more details on how to use the `cmd-dialog` component.
-
-### From CDN
-
-Add the following `<script>` tag to your HTML file to use the `cmd-dialog` component from a CDN. Choose one of the
-following options:
+Or from CDN:
 
 ```html
 <script type="module" src="https://esm.sh/cmd-dialog"></script>
 ```
 
-### From ESM
+## Usage
 
 ```html
+<cmd-dialog placeholder="Search..." hotkey="$mod+k"></cmd-dialog>
+
 <script type="module">
-	import CmdDialog from "https://esm.sh/cmd-dialog";
+	import "cmd-dialog";
+
+	const dialog = document.querySelector("cmd-dialog");
+	dialog.actions = [
+		{
+			title: "Author's website",
+			description: "Roman's personal website",
+			url: "https://ozana.cz",
+			target: "_blank",
+			tags: ["homepage", "contact", "email"],
+		},
+	];
 </script>
 ```
 
+See the [documentation](docs/readme.md) for details on attributes, events, and action configuration.
+
+Try the [live demo](https://ozzyczech.github.io/cmd-dialog/).
+
 ## Dependencies
 
-- [LitElement](https://lit.dev/) - A simple base class for creating fast, lightweight web components.
-- [Fuse.js](https://fusejs.io/) - Lightweight fuzzy-search library.
-- [tinykeys](https://github.com/jamiebuilds/tinykeys) - A robust Javascript library for capturing keyboard input.
+- [Lit](https://lit.dev/) — A simple base class for creating fast, lightweight web components.
+- [Fuse.js](https://fusejs.io/) — Lightweight fuzzy-search library.
+- [tinykeys](https://github.com/jamiebuilds/tinykeys) — A robust JavaScript library for capturing keyboard input.
 
 ## Credits
 
-- Icons by [Lucide](https://lucide.dev) – licensed under the [ISC License](https://lucide.dev/license).
-- The `cmd-dialog` is inspired by [Ninja Keys](https://github.com/ssleptsov/ninja-keys), which offers a similar command
-  palette and keyboard shortcuts.
+- Icons by [Lucide](https://lucide.dev) — licensed under the [ISC License](https://lucide.dev/license).
+- Inspired by [Ninja Keys](https://github.com/ssleptsov/ninja-keys).
 
 ## License
 
 [MIT](./LICENSE)
+
+---
 
 Made with ♥️ by [Roman Ožana](https://ozana.cz)
