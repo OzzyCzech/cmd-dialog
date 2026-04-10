@@ -23,11 +23,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: pnpm/action-setup@v4
       - name: Install dependencies
-        run: yarn install --ignore-engines
+        run: pnpm install --frozen-lockfile
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
       - name: Format check
-        run: yarn format:check
+        run: pnpm format:check
       - name: Test
-        run: yarn test
+        run: pnpm test
