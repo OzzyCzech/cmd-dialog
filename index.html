@@ -99,18 +99,8 @@
 			<section class="mt-12 space-y-4">
 				<h2 class="text-xl font-semibold tracking-tight">Usage</h2>
 				<div class="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden">
-					<div class="bg-neutral-900 text-neutral-300 p-4 font-mono text-sm leading-relaxed overflow-x-auto">
-						<pre><span class="text-violet-400">import</span> <span class="text-amber-300">"cmd-dialog"</span>;
-
-<span class="text-neutral-500">// Add to your HTML</span>
-<span class="text-emerald-400">&lt;cmd-dialog</span> <span class="text-sky-300">placeholder</span>=<span class="text-amber-300">"Search..."</span> <span class="text-sky-300">hotkey</span>=<span class="text-amber-300">"$mod+k"</span><span class="text-emerald-400">&gt;&lt;/cmd-dialog&gt;</span>
-
-<span class="text-neutral-500">// Set actions programmatically</span>
-<span class="text-violet-400">const</span> <span class="text-sky-300">dialog</span> = document.<span class="text-amber-200">querySelector</span>(<span class="text-amber-300">"cmd-dialog"</span>);
-dialog.actions = [
-  { <span class="text-sky-300">title</span>: <span class="text-amber-300">"Home"</span>, <span class="text-sky-300">url</span>: <span class="text-amber-300">"/"</span>, <span class="text-sky-300">hotkey</span>: <span class="text-amber-300">"$mod+h"</span> },
-  { <span class="text-sky-300">title</span>: <span class="text-amber-300">"Settings"</span>, <span class="text-sky-300">hotkey</span>: <span class="text-amber-300">"$mod+,"</span>, <span class="text-sky-300">onAction</span>: () => <span class="text-violet-400">true</span> },
-];</pre>
+					<div class="bg-neutral-900 p-4 font-mono text-sm leading-relaxed overflow-x-auto">
+						<pre id="usage-code"></pre>
 					</div>
 				</div>
 			</section>
@@ -135,6 +125,20 @@ dialog.actions = [
 		<script type="module">
 			const dialog = document.getElementById("demo");
 			import actions from "./fuse.json";
+			import { highlight } from "sugar-high";
+
+			// Syntax highlight usage example
+			document.getElementById("usage-code").innerHTML = highlight(`import "cmd-dialog";
+
+// Add to your HTML
+// <cmd-dialog placeholder="Search..." hotkey="$mod+k"></cmd-dialog>
+
+// Set actions programmatically
+const dialog = document.querySelector("cmd-dialog");
+dialog.actions = [
+  { title: "Home", url: "/", hotkey: "$mod+h" },
+  { title: "Settings", hotkey: "$mod+,", onAction: () => true },
+];`);
 
 			// add event listener
 			dialog.addEventListener("open", () => {
