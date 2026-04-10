@@ -8,31 +8,56 @@
 		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 		<style type="text/tailwindcss">
 			@import "tailwindcss";
+			@custom-variant dark (&:where(.dark, .dark *));
 		</style>
 		<script type="module" src="src/cmd-dialog.ts"></script>
 	</head>
-	<body class="bg-white text-neutral-900 antialiased">
+	<body class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 antialiased transition-colors">
 		<div class="max-w-3xl mx-auto px-6 py-16 sm:py-24">
 			<!-- Header -->
 			<header class="space-y-3">
-				<h1 class="text-3xl sm:text-4xl font-bold tracking-tight">cmd-dialog</h1>
-				<p class="text-lg text-neutral-500">A fast, keyboard-driven command dialog and shortcuts palette for web applications.</p>
+				<div class="flex items-center justify-between">
+					<h1 class="text-3xl sm:text-4xl font-bold tracking-tight">cmd-dialog</h1>
+					<button type="button" id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4.5">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+							<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+							<path d="M12 3l0 18"></path>
+							<path d="M12 9l4.65 -4.65"></path>
+							<path d="M12 14.3l7.37 -7.37"></path>
+							<path d="M12 19.6l8.85 -8.85"></path>
+						</svg>
+					</button>
+				</div>
+				<p class="text-lg text-neutral-500 dark:text-neutral-400">A fast, keyboard-driven command dialog and shortcuts palette for web applications.</p>
 				<div class="flex flex-wrap items-center gap-2 pt-1">
-					<a href="https://github.com/OzzyCzech/cmd-dialog" target="_blank" class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 rounded-md px-3 py-1.5 hover:bg-neutral-50 transition-colors">
+					<a
+						href="https://github.com/OzzyCzech/cmd-dialog"
+						target="_blank"
+						class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-1.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+					>
 						GitHub
 						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg>
 					</a>
-					<a href="https://www.npmjs.com/package/cmd-dialog" target="_blank" class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 rounded-md px-3 py-1.5 hover:bg-neutral-50 transition-colors">
+					<a
+						href="https://www.npmjs.com/package/cmd-dialog"
+						target="_blank"
+						class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-1.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+					>
 						npm
 						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M7 7h10v10" />
 							<path d="M7 17 17 7" />
 						</svg>
 					</a>
-					<a href="https://github.com/OzzyCzech/cmd-dialog/tree/main/docs" target="_blank" class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 rounded-md px-3 py-1.5 hover:bg-neutral-50 transition-colors">
+					<a
+						href="https://github.com/OzzyCzech/cmd-dialog/tree/main/docs"
+						target="_blank"
+						class="inline-flex items-center gap-1.5 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-1.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+					>
 						Documentation
 						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M7 7h10v10" />
@@ -44,20 +69,20 @@
 
 			<!-- Preview -->
 			<section class="mt-12">
-				<div class="border border-neutral-200 rounded-xl bg-neutral-50/50 p-8 sm:p-12 flex items-center justify-center min-h-[420px] relative">
+				<div class="border border-neutral-200 dark:border-neutral-800 rounded-xl bg-neutral-50/50 dark:bg-neutral-900/50 p-8 sm:p-12 flex items-center justify-center min-h-[420px] relative">
 					<cmd-dialog id="demo" placeholder="Type a command or search..." hotkey="$mod+k|$mod+j" showCloseButton="true" note="<span>cmd-dialog demo</span>"></cmd-dialog>
 
 					<button
 						type="button"
 						onclick="document.getElementById('demo').open()"
-						class="group flex items-center gap-3 text-sm text-neutral-500 border border-neutral-300 rounded-lg px-4 py-2.5 hover:border-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer bg-white shadow-sm"
+						class="group flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 border border-neutral-300 dark:border-neutral-700 rounded-lg px-4 py-2.5 hover:border-neutral-400 dark:hover:border-neutral-600 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors cursor-pointer bg-white dark:bg-neutral-900 shadow-sm"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400">
 							<circle cx="11" cy="11" r="8" />
 							<path d="m21 21-4.3-4.3" />
 						</svg>
 						Type a command or search...
-						<kbd class="ml-4 text-xs border border-neutral-200 bg-neutral-100 rounded px-1.5 py-0.5 font-mono text-neutral-400">⌘K</kbd>
+						<kbd class="ml-4 text-xs border border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 rounded px-1.5 py-0.5 font-mono text-neutral-400">⌘K</kbd>
 					</button>
 				</div>
 			</section>
@@ -65,7 +90,7 @@
 			<!-- Installation -->
 			<section class="mt-12 space-y-4">
 				<h2 class="text-xl font-semibold tracking-tight">Installation</h2>
-				<div class="border border-neutral-200 rounded-lg overflow-hidden">
+				<div class="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden">
 					<div class="bg-neutral-900 text-neutral-300 p-4 font-mono text-sm leading-relaxed"><span class="text-neutral-500 select-none">$ </span>pnpm add cmd-dialog</div>
 				</div>
 			</section>
@@ -73,7 +98,7 @@
 			<!-- Usage -->
 			<section class="mt-12 space-y-4">
 				<h2 class="text-xl font-semibold tracking-tight">Usage</h2>
-				<div class="border border-neutral-200 rounded-lg overflow-hidden">
+				<div class="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden">
 					<div class="bg-neutral-900 text-neutral-300 p-4 font-mono text-sm leading-relaxed overflow-x-auto">
 						<pre><span class="text-violet-400">import</span> <span class="text-amber-300">"cmd-dialog"</span>;
 
@@ -102,7 +127,9 @@ dialog.actions = [
 			</section>
 
 			<!-- Footer -->
-			<footer class="mt-16 pt-8 border-t border-neutral-200 text-sm text-neutral-400">Built by <a href="https://ozana.cz" target="_blank" class="text-neutral-600 hover:text-neutral-900 transition-colors">Roman Ožana</a></footer>
+			<footer class="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-400">
+				Built by <a href="https://ozana.cz" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors">Roman Ožana</a>
+			</footer>
 		</div>
 
 		<script type="module">
@@ -193,6 +220,21 @@ dialog.actions = [
 			if (window.location.hostname === "localhost") {
 				//dialog.open(); // for dev purposes
 			}
+
+			// Theme toggle
+			const toggle = document.getElementById("theme-toggle");
+			const root = document.documentElement;
+
+			if (localStorage.getItem("theme") === "dark" || (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+				root.classList.add("dark");
+				dialog.theme = "dark";
+			}
+
+			toggle.addEventListener("click", () => {
+				const isDark = root.classList.toggle("dark");
+				dialog.theme = isDark ? "dark" : "light";
+				localStorage.setItem("theme", isDark ? "dark" : "light");
+			});
 		</script>
 	</body>
 </html>
