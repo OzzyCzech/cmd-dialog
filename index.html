@@ -207,6 +207,15 @@ dialog.actions = [
 				},
 			);
 
+			// action with custom style
+			actions.push({
+				title: "Delete everything",
+				description: "This action is irreversible",
+				style: "color: #ef4444",
+				hotkey: "$mod+Shift+Delete",
+				onAction: () => true,
+			});
+
 			// action that is triggered outside the dialog
 			actions.push(
 				{
