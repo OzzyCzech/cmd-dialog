@@ -91,4 +91,4 @@ following options:
 
 [MIT](./LICENSE)
 
-<center>Made with ♥️ by [Roman Ožana](https://ozana.cz)</center>
+Made with ♥️ by [Roman Ožana](https://ozana.cz)
