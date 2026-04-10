@@ -39,13 +39,13 @@ export class CmdAction extends LitElement {
 	 */
 	private get hotkeys() {
 		if (this.action?.hotkey) {
+			const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 			const hotkeys = this.action.hotkey
-				.replaceAll("$mod", /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent) ? "⌘" : "Ctrl")
+				.replaceAll("$mod", isMac ? "⌘" : "Ctrl")
 				.replaceAll("Meta", "<span>⌘</span>")
 				.replaceAll("Control", "⌃")
 				.replaceAll("Shift", "⇧")
 				.replaceAll("Alt", "⌥")
-				.replaceAll("Control", "⌃")
 				.replaceAll("+", "")
 				.replaceAll(" ", "")
 				.split("|");
