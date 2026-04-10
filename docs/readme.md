@@ -15,7 +15,7 @@ Or from CDN:
 ## Basic usage
 
 ```html
-<cmd-dialog></cmd-dialog>
+<cmd-dialog placeholder="Search..." hotkey="$mod+k"></cmd-dialog>
 
 <script type="module">
 	import "cmd-dialog";
@@ -85,17 +85,18 @@ dialog.addEventListener("action", (event) => {
 
 An action is a plain object describing a command in the dialog. Every action must have a `title`; all other properties are optional.
 
-| Property      | Type       | Description                                                                                       |
-| ------------- | ---------- | ------------------------------------------------------------------------------------------------- |
-| `id`          | `string`   | Unique identifier.                                                                                |
-| `title`       | `string`   | **Required.** Display name of the action.                                                         |
-| `description` | `string`   | Secondary text shown below the title.                                                             |
-| `img`         | `string`   | SVG markup for the action icon.                                                                   |
-| `hotkey`      | `string`   | Keyboard shortcut ([tinykeys](https://github.com/jamiebuilds/tinykeys) syntax).                   |
-| `url`         | `string`   | URL to open when the action is selected.                                                          |
-| `target`      | `string`   | Link target (`_self`, `_blank`, etc.). Default: `_self`.                                          |
-| `onAction`    | `function` | Callback when the action is selected. Return `true` to close the dialog, `false` to keep it open. |
-| `tags`        | `string[]` | Additional search terms for [Fuse.js](https://www.fusejs.io/examples.html).                       |
+| Property      | Type                  | Description                                                                                       |
+| ------------- | --------------------- | ------------------------------------------------------------------------------------------------- |
+| `id`          | `string`              | Unique identifier.                                                                                |
+| `title`       | `string`              | **Required.** Display name of the action.                                                         |
+| `description` | `string`              | Secondary text shown below the title.                                                             |
+| `img`         | `string`              | SVG markup for the action icon.                                                                   |
+| `hotkey`      | `string`              | Keyboard shortcut ([tinykeys](https://github.com/jamiebuilds/tinykeys) syntax).                   |
+| `url`         | `string`              | URL to open when the action is selected.                                                          |
+| `target`      | `string`              | Link target (`_self`, `_blank`, etc.). Default: `_self`.                                          |
+| `onAction`    | `(event?) => boolean` | Callback when the action is selected. Return `true` to close the dialog, `false` to keep it open. |
+| `tags`        | `string[]`            | Additional search terms for [Fuse.js](https://www.fusejs.io/examples.html).                       |
+| `style`       | `string`              | Inline CSS styles applied to the action element. Useful for coloring specific actions.            |
 
 ```js
 const actions = [
@@ -156,7 +157,7 @@ dialog.actions = [
 
 ### Custom action callback
 
-Use `onAction` to run custom logic. The callback receives the triggering event (`KeyboardEvent` or `CustomEvent`):
+Use `onAction` to run custom logic. The callback receives the triggering event (`KeyboardEvent` or `CustomEvent`) and must return a `boolean`:
 
 ```js
 dialog.actions = [
@@ -180,6 +181,21 @@ dialog.actions = [
 			console.log("Dialog stays open");
 			return false;
 		},
+	},
+];
+```
+
+### Styling actions
+
+Use the `style` property to apply inline CSS to individual actions — useful for highlighting dangerous or important commands:
+
+```js
+dialog.actions = [
+	{
+		title: "Delete everything",
+		description: "This action is irreversible",
+		style: "color: #ef4444",
+		onAction: () => true,
 	},
 ];
 ```
