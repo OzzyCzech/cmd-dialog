@@ -21,8 +21,9 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"test": "tsc --noEmit",
-		"format": "biome check --write",
-		"format:check": "biome check ."
+		"lint": "oxlint",
+		"format": "oxfmt --write .",
+		"format:check": "oxfmt --check ."
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.2.2",
@@ -32,10 +33,11 @@
 		"tinykeys": "^3.0.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.1.3",
 		"@types/css-modules": "^1.0.5",
 		"autoprefixer": "^10.4.27",
 		"cssnano": "^7.1.4",
+		"oxfmt": "^0.44.0",
+		"oxlint": "^1.59.0",
 		"postcss": "^8.5.9",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^6.0.2",

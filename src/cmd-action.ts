@@ -112,10 +112,7 @@ export class CmdAction extends LitElement {
 		return html`
 			<li class=${classMap(classes)} part="action ${this.selected ? "selected" : ""}">
 				${this.img}
-				<strong part="title">
-					${this.action.title}
-					${this.description}
-				</strong>
+				<strong part="title"> ${this.action.title} ${this.description} </strong>
 				${this.hotkeys}
 			</li>
 		`;

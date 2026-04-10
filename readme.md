@@ -28,30 +28,31 @@ npm i cmd-dialog
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cmd Dialog Example</title>
-</head>
-<body>
-<cmd-dialog/>
-<script type="module" src="./main.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cmd Dialog Example</title>
+	</head>
+	<body>
+		<cmd-dialog />
+		<script type="module" src="./main.js"></script>
+	</body>
+</html>
 ```
 
 ```javascript
 import { CmdDialog } from "cmd-dialog";
 
-const dialog = document.querySelector('cmd-dialog');
+const dialog = document.querySelector("cmd-dialog");
 dialog.actions = [
-  {
-    "title": "Author's website",
-    "description": "Roman's personal website",
-    "url": "https://ozana.cz",
-    "target": "_blank",
-    "tags": ["homepage", "contact", "email"]
-  },
-  // ...
+	{
+		title: "Author's website",
+		description: "Roman's personal website",
+		url: "https://ozana.cz",
+		target: "_blank",
+		tags: ["homepage", "contact", "email"],
+	},
+	// ...
 ];
 ```
 
@@ -70,7 +71,7 @@ following options:
 
 ```html
 <script type="module">
-  import CmdDialog from 'https://esm.sh/cmd-dialog';
+	import CmdDialog from "https://esm.sh/cmd-dialog";
 </script>
 ```
 

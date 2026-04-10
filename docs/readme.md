@@ -8,7 +8,7 @@ The `cmd-dialog` element is a custom element that represents the dialog box.
 <cmd-dialog [attributes]></cmd-dialog>
 
 <script type="module">
-	const dialog = document.querySelector('cmd-dialog');
+	const dialog = document.querySelector("cmd-dialog");
 	dialog.actions = [
 		// ...
 	];
@@ -21,10 +21,10 @@ The `cmd-dialog` element is a custom element that represents the dialog box.
 - `isOpen` - Boolean value that indicates whether the dialog is open or not.
 
 ```js
-const dialog = document.querySelector('cmd-dialog');
+const dialog = document.querySelector("cmd-dialog");
 
 if (dialog.isOpen) {
-  // dialog is open
+	// dialog is open
 }
 ```
 
@@ -49,22 +49,17 @@ The `event.detail` has the following properties:
 
 - `search` - The search string from the search input.
 - `action` - The action object.
-- `parentEvent` - The original event that caused the *action*. Can be either `KeyboardEvent` or `CustomEvent`.
+- `parentEvent` - The original event that caused the _action_. Can be either `KeyboardEvent` or `CustomEvent`.
 
 Event `action` is cancelable. If you want to prevent perform the action, you can call `event.preventDefault()`.
 
 ```js
 // listen to action events
-dialog.addEventListener('action', (event) => {
-
-  // event.detail.parentEvent can be either KeyboardEvent or CustomEvent 
-  if (
-    dialog.isOpen &&
-    event.detail.parentEvent instanceof KeyboardEvent &&
-    event.detail.parentEvent.key !== 'Enter'
-  ) {
-    event.preventDefault(); // do not fire action when dialog is open and key is not Enter
-  }
+dialog.addEventListener("action", (event) => {
+	// event.detail.parentEvent can be either KeyboardEvent or CustomEvent
+	if (dialog.isOpen && event.detail.parentEvent instanceof KeyboardEvent && event.detail.parentEvent.key !== "Enter") {
+		event.preventDefault(); // do not fire action when dialog is open and key is not Enter
+	}
 });
 ```
 
@@ -73,29 +68,29 @@ dialog.addEventListener('action', (event) => {
 `Action` is a json object that contains the information of a user's action in the dialog.
 Every action can have the following properties:
 
-- `id` - The id of the action (*optional*).
+- `id` - The id of the action (_optional_).
 - `title` - The name of the action (**required**).
-- `description` - The description of the action (*optional*).
-- `img` - The icon of the action (*optional*).
-- `hotkey` - The hotkey of the action (*optional*). Please check [tinykeys](https://github.com/jamiebuilds/tinykeys) for more information.
-- `url` - The url of the action (*optional*).
-- `target` - Same as anchor [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) (*optional*).
-- `onAction` - The callback function that is called when the action is selected (*optional*).
-- `tags` - The *tags* of the action for better search with [Fuse.js](https://www.fusejs.io/examples.html) (*optional*).
+- `description` - The description of the action (_optional_).
+- `img` - The icon of the action (_optional_).
+- `hotkey` - The hotkey of the action (_optional_). Please check [tinykeys](https://github.com/jamiebuilds/tinykeys) for more information.
+- `url` - The url of the action (_optional_).
+- `target` - Same as anchor [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) (_optional_).
+- `onAction` - The callback function that is called when the action is selected (_optional_).
+- `tags` - The _tags_ of the action for better search with [Fuse.js](https://www.fusejs.io/examples.html) (_optional_).
 
 ```js
 const actions = [
-  {
-    id: "action-1",
-    title: 'Action 1',
-    description: 'Description of action 1',
-    img: '<svg>...</svg>',
-    hotkey: 'Control+a',
-    url: 'https://example.com',
-    target: '_blank',
-    onAction: () => console.log('Action was selected'),
-    tags: ['action', 'example']
-  }
+	{
+		id: "action-1",
+		title: "Action 1",
+		description: "Description of action 1",
+		img: "<svg>...</svg>",
+		hotkey: "Control+a",
+		url: "https://example.com",
+		target: "_blank",
+		onAction: () => console.log("Action was selected"),
+		tags: ["action", "example"],
+	},
 ];
 ```
 
@@ -107,11 +102,11 @@ multiple hotkeys separated by `|`. Thanks to [tinykeys](https://github.com/jamie
 
 ```js
 const actions = [
-  {
-    title: 'Action 1',
-    hotkey: '$mod+a|$mod+b', // $mod is a modifier key (ctrl or cmd)  
-    url: 'https://example.com'
-  }
+	{
+		title: "Action 1",
+		hotkey: "$mod+a|$mod+b", // $mod is a modifier key (ctrl or cmd)
+		url: "https://example.com",
+	},
 ];
 ```
 
@@ -121,10 +116,10 @@ The `img` property is a string that contains the SVG code for the action icon.
 
 ```js
 const actions = [
-  {
-    title: 'Action 1',
-    img: '<svg>...</svg>'
-  }
+	{
+		title: "Action 1",
+		img: "<svg>...</svg>",
+	},
 ];
 ```
 
@@ -136,11 +131,11 @@ The `target` property accept same values as the [HTML anchor element target](htt
 
 ```js
 const actions = [
-  {
-    title: 'Open Google',
-    url: 'https://google.com',
-    target: '_blank'
-  }
+	{
+		title: "Open Google",
+		url: "https://google.com",
+		target: "_blank",
+	},
 ];
 ```
 
@@ -151,10 +146,10 @@ The `onAction` property is a callback function that is called when the action is
 
 ```js
 const actions = [
-  {
-    title: 'Custom action',
-    onAction: () => console.log('Action was selected')
-  }
+	{
+		title: "Custom action",
+		onAction: () => console.log("Action was selected"),
+	},
 ];
 ```
 
@@ -162,10 +157,10 @@ To the callback function is passed the `event` object as the first argument.
 
 ```js
 const actions = [
-  {
-    title: 'Custom action',
-    onAction: (event) => console.log(event)
-  }
+	{
+		title: "Custom action",
+		onAction: (event) => console.log(event),
+	},
 ];
 ```
 
@@ -180,15 +175,11 @@ Your function can return `false` if you want to prevent the dialog from closing.
 
 ```js
 const actions = [
-  {
-    title: 'Custom action',
-    onAction: (event) => {
-      return false; // dialog will not close
-    }
-  }
+	{
+		title: "Custom action",
+		onAction: (event) => {
+			return false; // dialog will not close
+		},
+	},
 ];
 ```
- 
-
-
-

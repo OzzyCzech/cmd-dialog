@@ -220,10 +220,10 @@ export class CmdDialog extends LitElement {
 		}
 
 		const actionList: TemplateResult = html`
-			<ul part="action-list">${repeat(
-				this._results,
-				(action) =>
-					html`
+			<ul part="action-list">
+				${repeat(
+					this._results,
+					(action) => html`
 						<cmd-action
 							.action=${action}
 							.selected=${live(action === this._selected)}
@@ -236,7 +236,7 @@ export class CmdDialog extends LitElement {
 							}}
 						></cmd-action>
 					`,
-			)}
+				)}
 			</ul>
 		`;
 
@@ -251,22 +251,13 @@ export class CmdDialog extends LitElement {
 					}
 				}}"
 			>
-
 				<!-- Header -->
 				<form part="dialog-form">
-					<input
-						part="input"
-						type="text"
-						spellcheck="false"
-						autocomplete="off"
-						@input="${this._onInput}"
-						placeholder="${this.placeholder}"
-						autofocus
-					>
+					<input part="input" type="text" spellcheck="false" autocomplete="off" @input="${this._onInput}" placeholder="${this.placeholder}" autofocus />
 					<button type="button" @click="${this.close}" class="${this.showCloseButton ? "" : "hidden"}">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x size-6">
-							<path d="M18 6 6 18"/>
-							<path d="m6 6 12 12"/>
+							<path d="M18 6 6 18" />
+							<path d="m6 6 12 12" />
 						</svg>
 					</button>
 				</form>
@@ -278,27 +269,58 @@ export class CmdDialog extends LitElement {
 				<slot name="footer">
 					<p>
 						<kbd part="kbd" aria-label="Select action">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-							     class="lucide lucide-arrow-up-icon lucide-arrow-up size-3">
-								<path d="M20 4v7a4 4 0 0 1-4 4H4"/>
-								<path d="m9 10-5 5 5 5"/>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-arrow-up-icon lucide-arrow-up size-3"
+							>
+								<path d="M20 4v7a4 4 0 0 1-4 4H4" />
+								<path d="m9 10-5 5 5 5" />
 							</svg>
 						</kbd>
 						to select
 						<kbd part="kbd" aria-label="Navigate Up">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-							     class="lucide lucide-arrow-up-icon lucide-arrow-up size-3">
-								<path d="m5 12 7-7 7 7"/>
-								<path d="M12 19V5"/>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-arrow-up-icon lucide-arrow-up size-3"
+							>
+								<path d="m5 12 7-7 7 7" />
+								<path d="M12 19V5" />
 							</svg>
 						</kbd>
 						<kbd part="kbd" aria-label="Navigate down">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-							     class="lucide lucide-arrow-down-icon lucide-arrow-down size-3">
-								<path d="M12 5v14"/>
-								<path d="m19 12-7 7-7-7"/>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-arrow-down-icon lucide-arrow-down size-3"
+							>
+								<path d="M12 5v14" />
+								<path d="m19 12-7 7-7-7" />
 							</svg>
-						</kbd> to navigate <kbd part="kbd">esc</kbd> to close
+						</kbd>
+						to navigate <kbd part="kbd">esc</kbd> to close
 					</p>
 					${unsafeHTML(this.note ?? `<span>${this._results.length} options</span>`)}
 				</slot>
