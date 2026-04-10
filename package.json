@@ -22,8 +22,7 @@
 		"build": "tsc && vite build",
 		"test": "tsc --noEmit",
 		"format": "biome check --write",
-		"format:check": "biome check .",
-		"release": "np"
+		"format:check": "biome check ."
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.2.2",
@@ -37,7 +36,6 @@
 		"@types/css-modules": "^1.0.5",
 		"autoprefixer": "^10.4.27",
 		"cssnano": "^7.1.4",
-		"np": "^11.0.3",
 		"postcss": "^8.5.9",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^6.0.2",
