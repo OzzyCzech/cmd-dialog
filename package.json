@@ -7,7 +7,7 @@
 	},
 	"homepage": "https://ozzyczech.github.io/cmd-dialog/",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
-	"version": "2.1.2",
+	"version": "2.2.0",
 	"type": "module",
 	"module": "./dist/cmd-dialog.js",
 	"main": "./dist/cmd-dialog.js",
