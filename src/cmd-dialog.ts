@@ -77,6 +77,18 @@ export class CmdDialog extends LitElement {
 	private fuse: Fuse<Action> | undefined;
 
 	/**
+	 * Cleanup functions for tinykeys listeners
+	 * @private
+	 */
+	private _cleanups: (() => void)[] = [];
+
+	/**
+	 * Cleanup functions for action hotkey listeners
+	 * @private
+	 */
+	private _actionCleanups: (() => void)[] = [];
+
+	/**
 	 * Return the dialog element.
 	 */
 	get dialog(): HTMLDialogElement {
@@ -143,7 +155,7 @@ export class CmdDialog extends LitElement {
 		};
 
 		for (const hotkey of this.hotkey.split("|")) {
-			tinykeys(window, { [hotkey]: toggleDialog });
+			this._cleanups.push(tinykeys(window, { [hotkey]: toggleDialog }));
 		}
 
 		const navigate = {
@@ -162,26 +174,42 @@ export class CmdDialog extends LitElement {
 		};
 
 		// Navigate through actions
-		tinykeys(this, {
-			ArrowUp: navigate.prev,
-			"Shift+Tab": navigate.prev,
-			ArrowDown: navigate.next,
-			Tab: navigate.next,
-			Enter: navigate.open,
-		});
+		this._cleanups.push(
+			tinykeys(this, {
+				ArrowUp: navigate.prev,
+				"Shift+Tab": navigate.prev,
+				ArrowDown: navigate.next,
+				Tab: navigate.next,
+				Enter: navigate.open,
+			}),
+		);
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		for (const cleanup of this._cleanups) cleanup();
+		this._cleanups = [];
+		for (const cleanup of this._actionCleanups) cleanup();
+		this._actionCleanups = [];
 	}
 
 	override update(changedProperties: PropertyValues<this>) {
 		if (changedProperties.has("actions")) {
+			// Clean up old action hotkeys
+			for (const cleanup of this._actionCleanups) cleanup();
+			this._actionCleanups = [];
+
 			// Register action hotkeys
 			for (const action of this.actions.filter((item) => Boolean(item.hotkey))) {
 				const hotkeys = action.hotkey ? action.hotkey.split("|") : [];
 				for (const hotkey of hotkeys) {
-					tinykeys(window, {
-						[hotkey]: (event: KeyboardEvent) => {
-							this._triggerAction(action, event);
-						},
-					});
+					this._actionCleanups.push(
+						tinykeys(window, {
+							[hotkey]: (event: KeyboardEvent) => {
+								this._triggerAction(action, event);
+							},
+						}),
+					);
 				}
 			}
 
