@@ -1,7 +1,10 @@
 {
 	"name": "cmd-dialog",
 	"author": "Roman Ožana <roman@ozana.cz> (https://ozana.cz)",
-	"repository": "OzzyCzech/cmd-dialog",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/OzzyCzech/cmd-dialog.git"
+	},
 	"homepage": "https://ozzyczech.github.io/cmd-dialog/",
 	"description": "Command dialog and keyboard shortcuts palette for web apps",
 	"version": "2.1.2",
@@ -43,8 +46,7 @@
 		"typescript": "^6.0.2",
 		"vite": "^8.0.8"
 	},
-	"packageManager": "pnpm@10.33.0",
-	"keywords": [
+"keywords": [
 		"keyboard",
 		"shortcuts",
 		"dialog",
