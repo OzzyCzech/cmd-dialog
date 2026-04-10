@@ -110,7 +110,14 @@ export class CmdAction extends LitElement {
 		};
 
 		return html`
-			<li class=${classMap(classes)} part="action ${this.selected ? "selected" : ""}" role="option" aria-selected=${this.selected} id=${this.action.id ?? `action-${this.action.title.toLowerCase().replaceAll(" ", "-")}`}>
+			<li
+				class=${classMap(classes)}
+				part="action ${this.selected ? "selected" : ""}"
+				role="option"
+				aria-selected=${this.selected}
+				id=${this.action.id ?? `action-${this.action.title.toLowerCase().replaceAll(" ", "-")}`}
+				style=${this.action.style ?? ""}
+			>
 				${this.img}
 				<strong part="title"> ${this.action.title} ${this.description} </strong>
 				${this.hotkeys}

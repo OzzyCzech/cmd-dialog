@@ -37,4 +37,9 @@ export type Action = {
      * Tags of the action (optional)
      */
     tags?: string[];
+    /**
+     * Inline CSS styles applied to the action element (optional)
+     * Useful for coloring text of specific actions (e.g. dangerous commands)
+     */
+    style?: string;
 };
