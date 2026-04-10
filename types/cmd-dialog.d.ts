@@ -50,6 +50,16 @@ export declare class CmdDialog extends LitElement {
      */
     private fuse;
     /**
+     * Cleanup functions for tinykeys listeners
+     * @private
+     */
+    private _cleanups;
+    /**
+     * Cleanup functions for action hotkey listeners
+     * @private
+     */
+    private _actionCleanups;
+    /**
      * Return the dialog element.
      */
     get dialog(): HTMLDialogElement;
@@ -79,6 +89,7 @@ export declare class CmdDialog extends LitElement {
      */
     toggle(): void;
     connectedCallback(): void;
+    disconnectedCallback(): void;
     update(changedProperties: PropertyValues<this>): void;
     render(): TemplateResult<1>;
     /**
