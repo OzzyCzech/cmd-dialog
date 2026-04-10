@@ -8,7 +8,7 @@ import { tinykeys } from "tinykeys";
 import type { Action } from "./action.js";
 import type { CmdAction } from "./cmd-action.js";
 import "./cmd-action.js";
-import style from "./style.css?inline.css";
+import style from "./style.css?inline";
 
 @customElement("cmd-dialog")
 export class CmdDialog extends LitElement {

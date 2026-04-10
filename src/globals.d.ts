@@ -3,11 +3,6 @@ declare module "*.css?inline" {
 	export default styles;
 }
 
-declare module "*.css?inline.css" {
-	const styles: string;
-	export default styles;
-}
-
 declare module "tinykeys" {
 	export function tinykeys(target: Window | HTMLElement, keyBindingMap: Record<string, (event: KeyboardEvent) => void>, options?: { event?: string }): () => void;
 }
