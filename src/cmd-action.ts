@@ -49,7 +49,7 @@ export class CmdAction extends LitElement {
 				.replaceAll("+", "")
 				.replaceAll(" ", "")
 				.split("|");
-			return hotkeys.length > 0 ? html`<span>${repeat(hotkeys, (hotkey) => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : "";
+			return hotkeys.length > 0 ? html`<span aria-hidden="true">${repeat(hotkeys, (hotkey) => html`<kbd part="kbd">${hotkey}</kbd>`)}</span>` : "";
 		}
 
 		return nothing;
@@ -68,7 +68,7 @@ export class CmdAction extends LitElement {
 	 * @private
 	 */
 	private get img(): TemplateResult | typeof nothing {
-		return this.action.img ? html`<span>${unsafeHTML(this.action.img)}</span>` : nothing;
+		return this.action.img ? html`<span aria-hidden="true">${unsafeHTML(this.action.img)}</span>` : nothing;
 	}
 
 	/**
@@ -110,7 +110,7 @@ export class CmdAction extends LitElement {
 		};
 
 		return html`
-			<li class=${classMap(classes)} part="action ${this.selected ? "selected" : ""}">
+			<li class=${classMap(classes)} part="action ${this.selected ? "selected" : ""}" role="option" aria-selected=${this.selected} id=${this.action.id ?? `action-${this.action.title.toLowerCase().replaceAll(" ", "-")}`}>
 				${this.img}
 				<strong part="title"> ${this.action.title} ${this.description} </strong>
 				${this.hotkeys}

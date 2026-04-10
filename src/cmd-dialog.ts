@@ -248,7 +248,7 @@ export class CmdDialog extends LitElement {
 		}
 
 		const actionList: TemplateResult = html`
-			<ul part="action-list">
+			<ul id="action-list" part="action-list" role="listbox" aria-label="Actions">
 				${repeat(
 					this._results,
 					(action) => html`
@@ -272,6 +272,7 @@ export class CmdDialog extends LitElement {
 			<dialog
 				part="dialog"
 				class="${this.theme}"
+				aria-label="Command palette"
 				@close="${this.onClose}"
 				@click="${(event: MouseEvent) => {
 					if (event.target === this.dialog) {
@@ -281,8 +282,21 @@ export class CmdDialog extends LitElement {
 			>
 				<!-- Header -->
 				<form part="dialog-form">
-					<input part="input" type="text" spellcheck="false" autocomplete="off" @input="${this._onInput}" placeholder="${this.placeholder}" autofocus />
-					<button type="button" @click="${this.close}" class="${this.showCloseButton ? "" : "hidden"}">
+					<input
+						part="input"
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						role="combobox"
+						aria-label="${this.placeholder}"
+						aria-expanded="true"
+						aria-controls="action-list"
+						aria-autocomplete="list"
+						@input="${this._onInput}"
+						placeholder="${this.placeholder}"
+						autofocus
+					/>
+					<button type="button" aria-label="Close" @click="${this.close}" class="${this.showCloseButton ? "" : "hidden"}">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x size-6">
 							<path d="M18 6 6 18" />
 							<path d="m6 6 12 12" />
@@ -291,11 +305,11 @@ export class CmdDialog extends LitElement {
 				</form>
 
 				<!-- Action list -->
-				<main part="dialog-body">${actionList}</main>
+				<div part="dialog-body">${actionList}</div>
 
 				<!-- Footer -->
 				<slot name="footer">
-					<p>
+					<p aria-hidden="true">
 						<kbd part="kbd" aria-label="Select action">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -350,6 +364,7 @@ export class CmdDialog extends LitElement {
 						</kbd>
 						to navigate <kbd part="kbd">esc</kbd> to close
 					</p>
+					<span class="sr-only" role="status" aria-live="polite">${this._results.length} results available</span>
 					${unsafeHTML(this.note ?? `<span>${this._results.length} options</span>`)}
 				</slot>
 			</dialog>
