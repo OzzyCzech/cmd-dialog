@@ -1,24 +1,13 @@
 {
+	"extends": "@ozzyczech/tsconfig/dom",
 	"compilerOptions": {
-		"module": "ESNext",
-		"target": "ESNext",
-		"lib": ["ES2020", "DOM", "DOM.Iterable", "ES2021.String"],
-		"declaration": true,
 		"emitDeclarationOnly": true,
 		"outDir": "./types",
 		"rootDir": "./src",
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"moduleResolution": "Bundler",
-		"isolatedModules": true,
-		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
 		"useDefineForClassFields": false,
-		"skipLibCheck": true
+		"erasableSyntaxOnly": false,
+		"noUncheckedIndexedAccess": false
 	},
 	"include": ["src/**/*"]
 }

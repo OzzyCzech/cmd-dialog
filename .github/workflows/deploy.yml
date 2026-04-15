@@ -40,7 +40,7 @@ jobs:
           enablement: true
 
       - name: Upload static site to Pages
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: "./dist"
 
